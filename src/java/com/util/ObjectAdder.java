@@ -18,6 +18,6 @@ public class ObjectAdder<T> implements RunnableInTransaction<T>
     @Override
     public void runInTransaction(Session session, T object) 
     {
-        session.persist(object);
+        session.persist(object);        
     }    
 }
