@@ -37,10 +37,10 @@ public class VacationRequestDao
             creationdateformat="'"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(creationdate)+"'";
         if(status!=null)
         {
-            whereclause+="status="+status.name();
+            whereclause+="status='"+status.name()+"'";
             if(type!=null)
             {
-                whereclause+=" AND type="+type.name();
+                whereclause+=" AND type='"+type.name()+"'";
                 if(datediff!=null)
                 {
                     whereclause+=" AND time_to_sec(timediff(enddate,begindate))>="+datediff;
@@ -61,7 +61,7 @@ public class VacationRequestDao
         }
         else if(type!=null)
         {
-            whereclause+="type="+type.name();
+            whereclause+="type='"+type.name()+"'";
             if(datediff!=null)
             {
                 whereclause+=" AND time_to_sec(timediff(enddate,begindate))>="+datediff;
