@@ -12,12 +12,13 @@ import org.hibernate.Session;
  * @author abd
  * @param <T>
  */
-public class ObjectRemover<T> implements RunnableInTransaction<T,Void>
+public class ObjectUpdater<T> implements RunnableInTransaction<T,Void>
 {
     @Override
     public Void runInTransaction(Session session, T object) 
     {
-        session.delete(object);
+        session.update(object);
         return null;
-    }    
+    }
+    
 }

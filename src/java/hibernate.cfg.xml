@@ -11,12 +11,16 @@
     <property name="hibernate.connection.characterEncoding">utf8</property>
     <property name="hibernate.connection.useUnicode">true</property>
     <property name="hibernate.id.new_generator_mappings">false</property>
-    <property name="hibernate.hbm2ddl.auto">create</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.show_sql">true</property>
     <mapping class="com.model.pojo.Employee"/>
     <mapping class="com.model.pojo.Division"/>
     <mapping class="com.model.pojo.VacationRequest"/>
     <mapping class="com.model.pojo.DivisionManager"/>
     <mapping class="com.model.pojo.ManagementEmployee"/>
     <mapping class="com.model.pojo.CompanyManager"/>
+    <event type="pre-insert">
+        <listener class="com.model.pojo.VacationListener"></listener>
+    </event>
   </session-factory>
 </hibernate-configuration>

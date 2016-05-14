@@ -13,17 +13,17 @@ import javax.persistence.Id;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
+import javax.persistence.EntityListeners;
 import static javax.persistence.EnumType.STRING;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
 /**
  *
  * @author abd
  */
+
 @Entity
 public class VacationRequest implements Serializable 
 {
@@ -46,7 +46,6 @@ public class VacationRequest implements Serializable
     
     @Basic(optional=false)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    @Generated(value=GenerationTime.INSERT)
     private Date creationdate;
     
     @Basic(optional=false)
@@ -64,7 +63,7 @@ public class VacationRequest implements Serializable
     @Basic(optional=false)
     @Enumerated(STRING)
     private VacationType vacationtype;
-
+    
     public VacationRequest() 
     {
         status=VacationStatus.UnKnown;
@@ -161,7 +160,21 @@ public class VacationRequest implements Serializable
         return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
 
     }
-    
+    public Long getInterval()
+    {
+        if(enddate==null)
+        {
+            if(begindate==null)
+                return null;
+            else
+                return -begindate.getTime();
+        }
+        else if(begindate==null)
+            return enddate.getTime();
+        else
+            return enddate.getTime()-begindate.getTime();
+    }
     
     
 }
+

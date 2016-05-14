@@ -6,6 +6,7 @@
 package com.util;
 
 import org.hibernate.Session;
+import org.hibernate.SessionException;
 import org.hibernate.Transaction;
 import org.hibernate.TransactionException;
 
@@ -13,22 +14,32 @@ import org.hibernate.TransactionException;
  *
  * @author abd
  * @param <T>
+ * @param <Res>
  */
-public class TransactionExecuter<T> 
+public class TransactionExecuter<T,Res> 
 {
-    public void execute(RunnableInTransaction<T> tr,T object)
+    public Res execute(RunnableInTransaction<T,Res> tr,T object)
     {
         Transaction tx = null;
+        Res res;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) 
         {
             tx=session.beginTransaction();
-            tr.runInTransaction(session,object);
+            res=tr.runInTransaction(session,object);
             tx.commit();
         }
-        catch(TransactionException ex)
+        catch(TransactionException|SessionException ex)
         {
             if(tx!=null)
                 tx.rollback();
+            throw ex;
         }
+        return res;
+    }
+    public static String getOrderClause(String order)
+    {
+        if((order==null)||("".equals(order)))
+            return "";
+        return "order by "+order;
     }
 }

@@ -11,8 +11,9 @@ import org.hibernate.Session;
  *
  * @author abd
  * @param <T>
+ * @param <Res>
  */
-public interface RunnableInTransaction<T>
+public interface RunnableInTransaction<T,Res>
 {
-    void runInTransaction(Session session,T object);    
+    Res runInTransaction(Session session,T object);    
 }

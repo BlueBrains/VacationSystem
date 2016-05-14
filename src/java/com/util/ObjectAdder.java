@@ -12,12 +12,12 @@ import org.hibernate.Session;
  * @author abd
  * @param <T>
  */
-public class ObjectAdder<T> implements RunnableInTransaction<T>
+public class ObjectAdder<T> implements RunnableInTransaction<T,Void>
 {
-
     @Override
-    public void runInTransaction(Session session, T object) 
-    {
-        session.persist(object);        
+    public Void runInTransaction(Session session, T object) 
+    {        
+        session.persist(object); 
+        return null;
     }    
 }

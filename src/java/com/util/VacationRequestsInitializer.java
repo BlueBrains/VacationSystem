@@ -5,19 +5,23 @@
  */
 package com.util;
 
+import com.model.pojo.Employee;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 
 /**
  *
  * @author abd
- * @param <T>
+ * @param <In>
  */
-public class ObjectRemover<T> implements RunnableInTransaction<T,Void>
+public class VacationRequestsInitializer<In extends Employee> implements RunnableInTransaction<In, Void>
 {
+
     @Override
-    public Void runInTransaction(Session session, T object) 
+    public Void runInTransaction(Session session, In object) 
     {
-        session.delete(object);
+        session.refresh(object);
         return null;
-    }    
+    }
+    
 }

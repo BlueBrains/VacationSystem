@@ -6,6 +6,7 @@
 package com.model.pojo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -43,8 +44,8 @@ public class Employee implements Serializable
     
     private String phonenumber;
     
-    @OneToMany(mappedBy="employee",cascade={CascadeType.DETACH,CascadeType.REMOVE},fetch=FetchType.LAZY)
-    private List<VacationRequest> vacationrequests;
+    @OneToMany(mappedBy="employee",cascade={CascadeType.DETACH,CascadeType.REMOVE,CascadeType.REFRESH},fetch=FetchType.LAZY)
+    private List<VacationRequest> vacationrequests=new ArrayList<>();
 
     @ManyToOne(cascade={CascadeType.REFRESH})
     private Division division;

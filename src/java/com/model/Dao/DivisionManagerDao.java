@@ -6,10 +6,11 @@
 package com.model.Dao;
 
 import com.model.pojo.DivisionManager;
-import com.util.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.TransactionException;
+import com.model.pojo.VacationRequest;
+import com.util.ObjectAdder;
+import com.util.ObjectRemover;
+import com.util.ObjectUpdater;
+import com.util.TransactionExecuter;
 
 /**
  *
@@ -19,17 +20,14 @@ public class DivisionManagerDao
 {
     public static void addDivisionManager(DivisionManager mang)
     {
-        Transaction tx = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) 
-        {
-            tx=session.beginTransaction();
-            session.persist(mang);
-            tx.commit();
-        }
-        catch(TransactionException ex)
-        {
-            if(tx!=null)
-                tx.rollback();
-        }
+        new TransactionExecuter<DivisionManager,Void>().execute(new ObjectAdder<DivisionManager>(), mang);                
+    }
+    public static void removeDivisionManager(DivisionManager mang)
+    {
+        new TransactionExecuter<DivisionManager,Void>().execute(new ObjectRemover<DivisionManager>(), mang);                        
+    }
+    public static void updateDivisionManager(DivisionManager mang)
+    {
+        new TransactionExecuter<DivisionManager,Void>().execute(new ObjectUpdater<DivisionManager>(), mang);                                
     }
 }

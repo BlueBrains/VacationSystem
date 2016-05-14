@@ -5,19 +5,19 @@
  */
 package com.util;
 
+import java.util.List;
 import org.hibernate.Session;
 
 /**
  *
  * @author abd
- * @param <T>
+ * @param <Out>
  */
-public class ObjectRemover<T> implements RunnableInTransaction<T,Void>
+public class ObjectsGetter<Out> implements RunnableInTransaction<String, List<Out>>
 {
     @Override
-    public Void runInTransaction(Session session, T object) 
+    public List<Out> runInTransaction(Session session, String query) 
     {
-        session.delete(object);
-        return null;
+        return session.createQuery(query).list();
     }    
 }

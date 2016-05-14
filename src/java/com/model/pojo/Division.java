@@ -32,7 +32,7 @@ public class Division implements Serializable {
     @Basic(optional=false)
     private String name;
     
-    @OneToMany(mappedBy="division",cascade={CascadeType.PERSIST,CascadeType.MERGE})
+    @OneToMany(mappedBy="division",cascade={CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})
     private List<Employee> employees;
 
     @OneToOne(cascade={CascadeType.REFRESH,CascadeType.PERSIST,CascadeType.MERGE})
