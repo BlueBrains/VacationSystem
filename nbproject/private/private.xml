@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/home/molham/NetBeansProjects/vacationSys/web/index.xhtml</file>
+=======
+            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/index.xhtml</file>
+            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/model/Dao/VacationRequestDao.java</file>
+>>>>>>> 664330984651ff537d4ff9811c8c9f1447d7d43d
         </group>
     </open-files>
 </project-private>

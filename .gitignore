@@ -1,0 +1,7 @@
+/dist/
+/nbproject/
+/build/
+/web/WEB-INF
+.directory
+build.xml
+/test/

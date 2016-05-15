@@ -3,11 +3,23 @@
     <type>org.netbeans.modules.web.project</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/web-project/3">
-            <name>vacationSys</name>
+            <name>WebApplication1</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
                 <library dirs="200">
+<<<<<<< HEAD
                     <file>${file.reference.BootsFaces-OSP-dist-0.6.5.jar}</file>
+=======
+                    <file>${libs.Hibernate_5.1_jpa_.classpath}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${libs.Hibernate_5.1.classpath}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${libs.primefaces.classpath}</file>
+>>>>>>> 664330984651ff537d4ff9811c8c9f1447d7d43d
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
