@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">      
+
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">            
+            <h1 class="page-header "> <i class="fa fa-tachometer"></i>Dashboard</h1>
+            <h:form id="formView">
+                <p:dataTable id ="divisionDataTable" value="#{divisionManagedBean.divisionList}" var="division">
+                    <p:column headerText="Num">
+                        <h:outputText value="#{division.id}"></h:outputText>
+                    </p:column>
+                    <p:column headerText="Name">
+                        <h:outputText value="#{division.name}"></h:outputText>
+                    </p:column>
+                    <p:column headerText="divisionManagerName">
+                        <h:outputText value="#{division.divisionmanager.firstname}"></h:outputText>
+                    </p:column>
+                </p:dataTable>
+                <div>
+                    <p:panelGrid columns="2">
+                        <h:outputText value="division Name"></h:outputText>
+                        <p:inputText value="#{divisionManagedBean.d.name}"></p:inputText>
+                    </p:panelGrid>
+
+                </div>
+                <p:commandButton value="Add" action="#{divisionManagedBean.addDivision()}" update=":formView"></p:commandButton>            
+                <div>
+                    <p:panelGrid columns="2">
+                        <h:outputText value="Num"></h:outputText>
+                        <p:inputText value="#{divisionManagedBean.d.id}"></p:inputText>
+                    </p:panelGrid>
+                    <p:commandButton value="Delete" action="#{divisionManagedBean.deleteDivision()}" update=":formView"></p:commandButton>
+                </div>
+                <p:commandButton value="Redirect" action="#{divisionManagedBean.redirect2Add}" update=":formView"></p:commandButton>
+            </h:form>                                  
+        </ui:define>
+    </ui:composition> 
+</html>

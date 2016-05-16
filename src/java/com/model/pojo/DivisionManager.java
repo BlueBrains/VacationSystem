@@ -18,7 +18,11 @@ public class DivisionManager extends Employee implements Serializable
 
     public DivisionManager() {
     }
-
+    
+    public DivisionManager(Employee e) {
+        super(e);
+    }
+    
     public DivisionManager(String fname, String lname) {
         super(fname, lname);
     }

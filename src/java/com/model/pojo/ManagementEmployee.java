@@ -18,7 +18,11 @@ public class ManagementEmployee extends Employee implements Serializable
 
     public ManagementEmployee() {
     }
-
+    
+    public ManagementEmployee(Employee e){
+        super(e);
+    }
+    
     public ManagementEmployee(String fname, String lname) {
         super(fname, lname);
     }

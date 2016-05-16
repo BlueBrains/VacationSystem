@@ -50,6 +50,15 @@ public class Employee implements Serializable
     @ManyToOne(cascade={CascadeType.REFRESH})
     private Division division;
 
+    public Employee(Employee e){
+        setAddress(e.getAddress());
+        setDivision(e.getDivision());
+        setFirstname(e.getFirstname());
+        setLastname(e.getLastname());
+        setId(e.getId());
+        setPhonenumber(e.getPhonenumber());
+        setSalary(e.getSalary());                                    
+    }
     public Division getDivision() {
         return division;
     }

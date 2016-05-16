@@ -47,6 +47,6 @@ public class DivisionDao
     }
     public static List<Division> getDivisionsByName(String name,String order)
     {
-        return new TransactionExecuter<String,List<Division>>().execute(new ObjectsGetter<Division>(),"FROM Division where name like '%"+name+"%' "+TransactionExecuter.getOrderClause(order));                        
+        return new TransactionExecuter<String,List<Division>>().execute(new ObjectsGetter<Division>(),"FROM Division where name = '"+name+"' "+TransactionExecuter.getOrderClause(order));                        
     }
 }
