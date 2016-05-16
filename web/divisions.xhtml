@@ -8,35 +8,35 @@
 
     <ui:composition template="/templates/default/main.xhtml">
         <ui:define name="content">            
-            <h1 class="page-header "> <i class="fa fa-tachometer"></i>Dashboard</h1>
+            <h1 class="page-header "> <i class="fa fa-tachometer"></i>اللوحة الرئيسية</h1>
             <h:form id="formView">
                 <p:dataTable id ="divisionDataTable" value="#{divisionManagedBean.divisionList}" var="division">
-                    <p:column headerText="Num">
+                    <p:column headerText="الرقم">
                         <h:outputText value="#{division.id}"></h:outputText>
                     </p:column>
-                    <p:column headerText="Name">
+                    <p:column headerText="القسم">
                         <h:outputText value="#{division.name}"></h:outputText>
                     </p:column>
-                    <p:column headerText="divisionManagerName">
+                    <p:column headerText="رئيس القسم">
                         <h:outputText value="#{division.divisionmanager.firstname}"></h:outputText>
                     </p:column>
                 </p:dataTable>
                 <div>
                     <p:panelGrid columns="2">
-                        <h:outputText value="division Name"></h:outputText>
+                        <h:outputText value="القسم"></h:outputText>
                         <p:inputText value="#{divisionManagedBean.d.name}"></p:inputText>
                     </p:panelGrid>
 
                 </div>
-                <p:commandButton value="Add" action="#{divisionManagedBean.addDivision()}" update=":formView"></p:commandButton>            
+                <p:commandButton value="أضف" action="#{divisionManagedBean.addDivision()}" update=":formView"></p:commandButton>            
                 <div>
                     <p:panelGrid columns="2">
-                        <h:outputText value="Num"></h:outputText>
+                        <h:outputText value="الرقم"></h:outputText>
                         <p:inputText value="#{divisionManagedBean.d.id}"></p:inputText>
                     </p:panelGrid>
-                    <p:commandButton value="Delete" action="#{divisionManagedBean.deleteDivision()}" update=":formView"></p:commandButton>
+                    <p:commandButton value="حذف" action="#{divisionManagedBean.deleteDivision()}" update=":formView"></p:commandButton>
                 </div>
-                <p:commandButton value="Redirect" action="#{divisionManagedBean.redirect2Add}" update=":formView"></p:commandButton>
+                <p:commandButton value="انتقال إلى" action="#{divisionManagedBean.redirect2Add}" update=":formView"></p:commandButton>
             </h:form>                                  
         </ui:define>
     </ui:composition> 

@@ -19,6 +19,7 @@
     <mapping class="com.model.pojo.DivisionManager"/>
     <mapping class="com.model.pojo.ManagementEmployee"/>
     <mapping class="com.model.pojo.CompanyManager"/>
+    <mapping class="com.model.pojo.EmployeePermission"/>
     <event type="pre-insert">
         <listener class="com.model.pojo.VacationListener"></listener>
     </event>

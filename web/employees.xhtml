@@ -11,48 +11,50 @@
             <h1 class="page-header "> <i class="fa fa-tachometer"></i>Dashboard</h1>
             <h:form id="formView">
                 <p:dataTable id ="employeeDataTable" value="#{employeeManagedBean.employeeList}" var="employee">
-                    <p:column headerText="Num">
+                    <p:column headerText="الرقم">
                         <h:outputText value="#{employee.id}"></h:outputText>
                     </p:column>
-                    <p:column headerText="fName">
+                    <p:column headerText="الاسم">
                         <h:outputText value="#{employee.firstname}"></h:outputText>
                     </p:column>
-                    <p:column headerText="lName">
+                    <p:column headerText="الكنية">
                         <h:outputText value="#{employee.lastname}"></h:outputText>
                     </p:column>                    
-                    <p:column headerText="Age">
+                    <p:column headerText="الراتب">
                         <h:outputText value="#{employee.salary}"></h:outputText>
                     </p:column>
-                    <p:column headerText="division">
+                    <p:column headerText="القسم">
                         <h:outputText value="#{employee.division.name}"></h:outputText>
-                    </p:column>                    
+                    </p:column>   
                 </p:dataTable>                
                 <div>                    
                     <p:panelGrid columns="2">
-                        <h:outputText value="fist Name"></h:outputText>
+                        <h:outputText value="اسم الموظف"></h:outputText>
                         <p:inputText value="#{employeeManagedBean.e.firstname}"></p:inputText>
-                        <h:outputText value="last Name"></h:outputText>
+                        <h:outputText value="كنية الموظف"></h:outputText>
                         <p:inputText value="#{employeeManagedBean.e.lastname}"></p:inputText>
-                        <h:outputText value="Salary"></h:outputText>
+                        <h:outputText value="الراتب"></h:outputText>
                         <p:inputText value="#{employeeManagedBean.e.salary}"></p:inputText>                    
-                        <h:outputText value="department"></h:outputText>
+                        <h:outputText value="القسم"></h:outputText>
                         <p:inputText value="#{employeeManagedBean.divisionName}"></p:inputText>                                            
-                        <h:outputText value="type"></h:outputText>
-                        <p:inputText value="#{employeeManagedBean.eType}"></p:inputText>                                            
-<!--                        <h:outputText value="password"></h:outputText>
-                        <p:password value="#{employeeManagedBean.e.salary}"></p:password>>                                                                    -->
+                        <h:outputText value="نوع الموظف"></h:outputText>
+                        <p:inputText value="#{employeeManagedBean.employeetype}"></p:inputText>                                            
+                        <h:outputText value="اسم المستخدم"></h:outputText>
+                        <h:inputText value="#{employeeManagedBean.e.username}"></h:inputText>
+                        <h:outputText value="كلمة السر"></h:outputText>
+                        <p:password value="#{employeeManagedBean.passwordplain}"></p:password>                                                                   
                     </p:panelGrid>
 
                 </div>
-                <p:commandButton value="Add" action="#{employeeManagedBean.addEmployee()}" update=":formView"></p:commandButton>            
+                <p:commandButton value="أضف" action="#{employeeManagedBean.addEmployee()}" update=":formView"></p:commandButton>            
                 <div>
                     <p:panelGrid columns="2">
-                        <h:outputText value="Num"></h:outputText>
+                        <h:outputText value="الرقم"></h:outputText>
                         <p:inputText value="#{employeeManagedBean.e.id}"></p:inputText>
                     </p:panelGrid>
-                    <p:commandButton value="Delete" action="#{employeeManagedBean.deleteEmployee()}" update=":formView"></p:commandButton>
+                    <p:commandButton value="حذف" action="#{employeeManagedBean.deleteEmployee()}" update=":formView"></p:commandButton>
                 </div>
-                <p:commandButton value="Redirect" action="#{employeeManagedBean.redirect2Add}" update=":formView"></p:commandButton>
+                <p:commandButton value="انتقال إلى" action="#{employeeManagedBean.redirect2Add}" update=":formView"></p:commandButton>
             </h:form>                                  
         </ui:define>
     </ui:composition> 

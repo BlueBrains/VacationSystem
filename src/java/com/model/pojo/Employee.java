@@ -10,12 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -31,6 +34,16 @@ public class Employee implements Serializable
     @GeneratedValue(strategy = GenerationType.AUTO)    
     private Integer id;
 
+    @Basic(optional=false)
+    @Column(unique=true)
+    private String username;
+    
+    @Basic(optional=false)
+    private String passwordhash;
+       
+    @Basic(optional=false)
+    private String passwordsalt;
+    
     @Basic(optional=false)
     private String firstname;
 
@@ -50,6 +63,51 @@ public class Employee implements Serializable
     @ManyToOne(cascade={CascadeType.REFRESH})
     private Division division;
 
+    @ManyToMany
+    @JoinColumn(name="permission_id")
+    private List<EmployeePermission> permissions;
+
+    public List<EmployeePermission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<EmployeePermission> permissions) {
+        this.permissions = permissions;
+    }
+    
+    public void addPermission(EmployeePermission permission)
+    {
+        permission.addEmployee(this);
+    }
+    public void removePermission(EmployeePermission permission)
+    {
+        permission.removeEmployee(this);
+    }
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPasswordhash() {
+        return passwordhash;
+    }
+
+    public void setPasswordhash(String passwordhash) {
+        this.passwordhash = passwordhash;
+    }
+
+    public String getPasswordsalt() {
+        return passwordsalt;
+    }
+
+    public void setPasswordsalt(String passwordsalt) {
+        this.passwordsalt = passwordsalt;
+    }
+    
+    
     public Employee(Employee e){
         setAddress(e.getAddress());
         setDivision(e.getDivision());

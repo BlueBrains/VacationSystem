@@ -7,7 +7,6 @@ package com.view.bean;
  */
 import com.model.Dao.DivisionDao;
 import com.model.Dao.EmployeeDao;
-import com.model.pojo.CompanyManager;
 import com.model.pojo.Division;
 import com.model.pojo.DivisionManager;
 import com.model.pojo.Employee;
@@ -24,22 +23,38 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name="employeeManagedBean", eager=true)
 @SessionScoped
-public class EmployeeManagedBean {
+public class EmployeeManagedBean 
+{
  
     /** Creates a new instance of EmployeeManagedBean */
 
     private Employee e;
-    private String eType;
+    private String passwordplain;
     private String divisionName;
     private List<Employee> employeeList;
 
-    public String geteType() {
-        return eType;
+    private String employeetype;
+
+    public String getEmployeetype() {
+        return employeetype;
     }
 
-    public void seteType(String eType) {
-        this.eType = eType;
+    public void setEmployeetype(String employeetype) {
+        this.employeetype = employeetype;
     }
+    
+    
+    public String getPasswordplain() {
+        return passwordplain;
+    }
+
+    public void setPasswordplain(String passwordplain) {
+        this.passwordplain = passwordplain;
+    }
+
+    
+    
+
 
     public String getDivisionName() {
         return divisionName;
@@ -92,11 +107,16 @@ public class EmployeeManagedBean {
     
     public void addEmployee()
     {
-        Division ed = DivisionDao.getDivisionsByName(divisionName, null).get(0);
-        e.setDivision(ed);
+        Division ed=null;
+        if((divisionName!=null)&&(!"".equals(divisionName)))
+        {
+            ed = DivisionDao.getDivisionsByName(divisionName, null).get(0);
+            e.setDivision(ed);
+        }
         Employee fe;
-        switch(eType){
-            case "manager": {
+        switch(employeetype){
+            case "manager": 
+            {
                 fe = new DivisionManager(e);
                 DivisionDao.initializeEmployees(ed);
                 ed.setDivisionmanager((DivisionManager)fe);                
@@ -108,8 +128,8 @@ public class EmployeeManagedBean {
                 break;
             default: fe = e;
         }
-        EmployeeDao.addEmployee(fe);                
-        DivisionDao.updateDivision(ed);
+        EmployeeDao.addEmployee(fe,passwordplain);                
+        //DivisionDao.updateDivision(ed);
         employeeList=EmployeeDao.getEmployees(null);
     }
     

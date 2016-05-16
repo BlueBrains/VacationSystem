@@ -4,10 +4,10 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets" dir="rtl" lang="ar">
     <h:head>
-        <title>Sign In Template for BootsFaces</title>
-        <meta name="author" content="Riccardo Massera"></meta>
+        <title>تسجيل الدخول</title>
+        <meta charset="utf-8"/>
         <style type="text/css">
             .form-signin {
                 margin: 0 auto;
@@ -20,18 +20,18 @@
         <b:container>
             <h:form styleClass="form-signin" prependId="false">
                 <h2 class="form-signin-heading">Please sign in</h2>
-                <b:inputText id="email" placeholder="Email address" >
+                <b:inputText id="email" placeholder="اسم المستخدم" value="#{loginManagedBean.username}" >
                     <f:facet name="prepend">
                         <b:icon name="user" />
                     </f:facet>
                 </b:inputText>
-                <b:inputText id="password" placeholder="Password" type="password">
+                <b:inputText id="password" placeholder="كلمة السر" type="password" value="#{loginManagedBean.password}">
                     <f:facet name="prepend">
                         <b:iconAwesome name="key" />
                     </f:facet>
                 </b:inputText>
-                <b:selectBooleanCheckbox value="true" caption="remember me"/>
-                <b:commandButton look="primary btn-block" value="Sign In" icon="log-in" size="lg"/>
+                <b:selectBooleanCheckbox value="#{loginManagedBean.rememberme}" caption="remember me"/>
+                <b:commandButton action="#{loginManagedBean.login()}" look="primary btn-block" value="Sign In" icon="log-in" size="lg"/>
             </h:form>
         </b:container>
     </h:body>
