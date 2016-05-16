@@ -44,7 +44,7 @@ public class EmployeeDao
     }
     public static List<Employee> getEmployees(String order)
     {
-        return new TransactionExecuter<String,List<Employee>>().execute(new ObjectsGetter<>(),"FROM Employee "+TransactionExecuter.getOrderClause(order));        
+        return new TransactionExecuter<String,List<Employee>>().execute(new ObjectsGetter<Employee>(),"FROM Employee "+TransactionExecuter.getOrderClause(order));        
     }
     public static List<Employee> getEmployeesByFirstName(String firstname,String order)
     {

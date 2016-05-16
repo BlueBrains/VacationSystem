@@ -6,7 +6,6 @@
 package com.view.bean;
 
 import com.model.Dao.DivisionDao;
-import com.model.Dao.EmployeeDao;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import com.model.pojo.Division;
