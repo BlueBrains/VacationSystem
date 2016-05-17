@@ -5,14 +5,19 @@
  */
 package com.view.bean;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.config.IniSecurityManagerFactory;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.Factory;
 
@@ -71,9 +76,11 @@ public class LoginManagedBean
                 currentemp.login(token);
                 System.out.println("User [" + currentemp.getPrincipal().toString() + "] logged in successfully.");
 
+                Session session=currentemp.getSession();
                 // save current username in the session, so we have access to our User model
-                currentemp.getSession().setAttribute("username", username);
-                
+                session.setAttribute("username", username);
+                System.out.println(session.getTimeout());
+                FacesContext.getCurrentInstance().getExternalContext().redirect("employee_home.xhtml");
             } 
             catch (UnknownAccountException uae) 
             {
@@ -90,12 +97,19 @@ public class LoginManagedBean
               System.out.println("The account for username " + token.getPrincipal()
                         + " is locked.  "
                         + "Please contact your administrator to unlock it.");
+            } catch (IOException ex) {
+                Logger.getLogger(LoginManagedBean.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }        
     }
     public void logout()
     {
         Subject currentemp=SecurityUtils.getSubject();
         currentemp.logout();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("signin.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
