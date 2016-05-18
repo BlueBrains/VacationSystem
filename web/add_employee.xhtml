@@ -8,30 +8,34 @@
 
     <ui:composition template="/templates/default/main.xhtml">
         <ui:define name="content">            
-            <h1 class="page-header "> <i class="fa fa-tachometer"></i>Add Employee</h1>
+            <h1 class="page-header "> <i class="fa fa-tachometer"></i>إضافة موظف</h1>
             <h:form id="formView">
                 <div>                    
                     <p:panelGrid columns="2">
-                        <h:outputText value="fist Name"></h:outputText>
+                        <h:outputText value="اسم الموظف"></h:outputText>
                         <p:inputText value="#{employeeManagedBean.e.firstname}"></p:inputText>
-                        <h:outputText value="last Name"></h:outputText>
+                        <h:outputText value="كنية الموظف"></h:outputText>
                         <p:inputText value="#{employeeManagedBean.e.lastname}"></p:inputText>
-                        <h:outputText value="Salary"></h:outputText>
+                        <h:outputText value="الراتب"></h:outputText>
                         <p:inputText value="#{employeeManagedBean.e.salary}"></p:inputText>                    
-                        <h:outputText value="department"></h:outputText>                        
+                        <h:outputText value="القسم"></h:outputText>
                         <h:selectOneMenu value="#{employeeManagedBean.divisionName}">
                             <f:selectItems value="#{divisionManagedBean.divisionList}" var="dep"
                                            itemLabel="#{dep.name}" itemValue="#{dep.name}" />
-                        </h:selectOneMenu>                        
-                        <h:outputText value="type"></h:outputText>
+                        </h:selectOneMenu>                                                
+                        <h:outputText value="نوع الموظف"></h:outputText>
                         <h:selectOneRadio value="#{employeeManagedBean.eType}" layout="pageDirection">
-                            <f:selectItem itemValue="manager" itemLabel="department manager"/>
-                            <f:selectItem itemValue="managment employee" itemLabel="managment employee" />
-                            <f:selectItem itemValue="employee" itemLabel="normal employee" />
-                        </h:selectOneRadio>
+                            <f:selectItem itemValue="manager" itemLabel="رئيس القسم"/>
+                            <f:selectItem itemValue="managment employee" itemLabel="موظف إداري" />
+                            <f:selectItem itemValue="employee" itemLabel="موظف عادي" />
+                        </h:selectOneRadio>                        
+                        <h:outputText value="اسم المستخدم"></h:outputText>
+                        <h:inputText value="#{employeeManagedBean.e.username}"></h:inputText>
+                        <h:outputText value="كلمة السر"></h:outputText>
+                        <p:password value="#{employeeManagedBean.passwordplain}"></p:password>                                                                                           
                     </p:panelGrid>
                 </div>                
-                <p:commandButton value="Add" action="#{employeeManagedBean.addEmployee()}"></p:commandButton>            
+                <p:commandButton value="أضف" action="#{employeeManagedBean.addEmployee()}"></p:commandButton>            
             </h:form>                                  
         </ui:define>
     </ui:composition> 

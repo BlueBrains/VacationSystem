@@ -10,6 +10,7 @@ import com.model.pojo.VacationRequest;
 import com.util.ObjectAdder;
 import com.util.ObjectRemover;
 import com.util.ObjectUpdater;
+import com.util.PasswordGenerator;
 import com.util.TransactionExecuter;
 
 /**
@@ -18,8 +19,9 @@ import com.util.TransactionExecuter;
  */
 public class DivisionManagerDao 
 {
-    public static void addDivisionManager(DivisionManager mang)
+    public static void addDivisionManager(DivisionManager mang,String plaintextpassword)
     {
+        PasswordGenerator.generatePassword(mang, plaintextpassword);
         new TransactionExecuter<DivisionManager,Void>().execute(new ObjectAdder<DivisionManager>(), mang);                
     }
     public static void removeDivisionManager(DivisionManager mang)

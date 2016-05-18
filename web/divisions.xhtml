@@ -8,25 +8,25 @@
 
     <ui:composition template="/templates/default/main.xhtml">
         <ui:define name="content">            
-            <h1 class="page-header "> <i class="fa fa-tachometer"></i>Departments</h1>
+            <h1 class="page-header "> <i class="fa fa-tachometer"></i>الأقسام</h1>
             <h:form id="formView">
                 <p:dataTable id ="divisionDataTable" value="#{divisionManagedBean.divisionList}" var="division">
-                    <p:column headerText="Num">
+                    <p:column headerText="الرقم">
                         <h:outputText value="#{division.id}"></h:outputText>
                     </p:column>
-                    <p:column headerText="Name">
+                    <p:column headerText="القسم">
                         <h:outputText value="#{division.name}"></h:outputText>
                     </p:column>
-                    <p:column headerText="department Manager Name">
+                    <p:column headerText="رئيس القسم">
                         <h:outputText value="#{division.divisionmanager.firstname}"></h:outputText>
                     </p:column>
                     <p:column>    				
-                        <f:facet name="header">Action</f:facet>
-                        <h:commandLink value="Edit" action="#{divisionManagedBean.editAction(division)}" style="float:left" />
-                        <h:commandLink value="Delete" action="#{divisionManagedBean.deleteDivision(division)}" style="float:right" />
+                        <f:facet name="header">إجراء</f:facet>
+                        <h:commandLink value="تعديل" action="#{divisionManagedBean.editAction(division)}" style="float:left" />
+                        <h:commandLink value="حذف" action="#{divisionManagedBean.deleteDivision(division)}" style="float:right" />
                     </p:column>                                        
                 </p:dataTable>                
-                <p:commandButton value="New Department" action="#{divisionManagedBean.addAction}" style="padding: 3px; margin-top: 15px; " ></p:commandButton>
+                <p:commandButton value="قسم جديد" action="#{divisionManagedBean.addAction}" style="padding: 3px; margin-top: 15px; " ></p:commandButton>
             </h:form>                                  
         </ui:define>
     </ui:composition> 

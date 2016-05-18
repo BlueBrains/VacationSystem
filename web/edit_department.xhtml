@@ -8,34 +8,34 @@
 
     <ui:composition template="/templates/default/main.xhtml">
         <ui:define name="content">            
-            <h1 class="page-header "> <i class="fa fa-tachometer"></i>Edit Department</h1>
+            <h1 class="page-header "> <i class="fa fa-tachometer"></i>تعديل قسم</h1>
             <h:form id="formView" style="margin-top: 30px">
                 <div>                    
                     <p:panelGrid columns="2">
-                        <h:outputText value="Name"></h:outputText>
+                        <h:outputText value="اسم القسم"></h:outputText>
                         <p:inputText value="#{divisionManagedBean.d.name}"></p:inputText>                        
                     </p:panelGrid>
                 </div>                            
                 <p:dataTable id ="divisionEmpDataTable" value="#{divisionManagedBean.d.employees}" var="emp" style="margin-top: 30px">
-                    <p:column headerText="Num">
+                    <p:column headerText="الرقم">
                         <h:outputText value="#{emp.id}"></h:outputText>
                     </p:column>
-                    <p:column headerText="Name">
+                    <p:column headerText="اسم الموظف">
                         <h:outputText value="#{emp.fullName}"></h:outputText>
                     </p:column>
-                    <p:column headerText="Salary">
+                    <p:column headerText="الراتب">
                         <h:outputText value="#{emp.salary}"></h:outputText>
                     </p:column>
-                    <p:column headerText="Type">
+                    <p:column headerText="نوع الموظف">
                         <h:outputText value="#{employeeManagedBean.getEmployeeType(emp)}"></h:outputText>
                     </p:column>                            
                     <p:column>    				
-                        <f:facet name="header">Action</f:facet>
-                        <h:commandLink value="Edit" action="#{employeeManagedBean.editAction(emp)}" style="float:left" />
+                        <f:facet name="header">إجراء</f:facet>
+                        <h:commandLink value="تعديل" action="#{employeeManagedBean.editAction(emp)}" style="float:left" />
                     </p:column>
                 </p:dataTable>                
                 
-                <p:commandButton value="update" action="#{divisionManagedBean.updateDivision()}" update=":formView"></p:commandButton>                                            
+                <p:commandButton value="حدث" action="#{divisionManagedBean.updateDivision()}"></p:commandButton>                                            
             </h:form>                                  
         </ui:define>
     </ui:composition> 

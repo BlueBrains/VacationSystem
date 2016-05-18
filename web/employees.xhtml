@@ -8,32 +8,31 @@
 
     <ui:composition template="/templates/default/main.xhtml">
         <ui:define name="content">            
-            <h1 class="page-header "> <i class="fa fa-tachometer"></i>Employees</h1>
+            <h1 class="page-header "> <i class="fa fa-tachometer"></i>الموظفون</h1>
             <h:form id="formView">
                 <p:dataTable id ="employeeDataTable" value="#{employeeManagedBean.employeeList}" var="employee">
-                    <p:column headerText="Num">                        
-                        <h:outputText value="#{employee.id}"/>
+                    <p:column headerText="الرقم">
+                        <h:outputText value="#{employee.id}"></h:outputText>
                     </p:column>
-                    <p:column headerText="first Name">                        
+                    <p:column headerText="الاسم">
                         <h:outputText value="#{employee.firstname}"></h:outputText>
                     </p:column>
-                    <p:column headerText="last Name">
+                    <p:column headerText="الكنية">
                         <h:outputText value="#{employee.lastname}"></h:outputText>
                     </p:column>                    
-                    <p:column headerText="Salary">
+                    <p:column headerText="الراتب">
                         <h:outputText value="#{employee.salary}"></h:outputText>
                     </p:column>
-                    <p:column headerText="Department">
-                        <h:outputText value="#{employee.division.name}" ></h:outputText>
-                    </p:column>
+                    <p:column headerText="القسم">
+                        <h:outputText value="#{employee.division.name}"></h:outputText>
+                    </p:column>   
                     <p:column>    				
-                        <f:facet name="header">Action</f:facet>
-                        <h:commandLink value="Edit" action="#{employeeManagedBean.editAction(employee)}" style="float:left" />
-                        <h:commandLink value="Delete" action="#{employeeManagedBean.deleteEmployee(employee)}" style="float:right" />
-                    </p:column>				                    
-                </p:dataTable>                                
-                <h:commandButton value="New Employee" action="#{employeeManagedBean.addAction}" style="padding: 3px; margin-top: 15px; "/>
-                <br/><br/>                                
+                        <f:facet name="header">إجراء</f:facet>
+                        <h:commandLink value="تعديل" action="#{employeeManagedBean.editAction(employee)}" style="float:left" />
+                        <h:commandLink value="حذف" action="#{employeeManagedBean.deleteEmployee(employee)}" style="float:right" />
+                    </p:column>	                    
+                </p:dataTable>                
+                <h:commandButton value="أضف موظف" action="#{employeeManagedBean.addAction}" style="padding: 3px; margin-top: 15px; "/>                
             </h:form>                                  
         </ui:define>
     </ui:composition> 

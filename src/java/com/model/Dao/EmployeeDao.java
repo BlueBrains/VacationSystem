@@ -12,6 +12,7 @@ import com.util.ObjectGetter;
 import com.util.ObjectRemover;
 import com.util.ObjectUpdater;
 import com.util.ObjectsGetter;
+import com.util.PasswordGenerator;
 import com.util.VacationRequestsInitializer;
 import java.util.List;
 
@@ -26,8 +27,10 @@ public class EmployeeDao
     {
         new TransactionExecuter<Employee,Void>().execute(new VacationRequestsInitializer<>(), emp);                
     }
-    public static void addEmployee(Employee emp)
+    
+    public static void addEmployee(Employee emp,String plaintextpassword)
     {                
+        PasswordGenerator.generatePassword(emp, plaintextpassword);
         new TransactionExecuter<Employee,Void>().execute(new ObjectAdder<Employee>(), emp);        
     }
     public static void removeEmployee(Employee emp)
@@ -44,7 +47,7 @@ public class EmployeeDao
     }
     public static List<Employee> getEmployees(String order)
     {
-        return new TransactionExecuter<String,List<Employee>>().execute(new ObjectsGetter<>(),"FROM Employee "+TransactionExecuter.getOrderClause(order));        
+        return new TransactionExecuter<String,List<Employee>>().execute(new ObjectsGetter<Employee>(),"FROM Employee "+TransactionExecuter.getOrderClause(order));        
     }
     public static List<Employee> getEmployeesByFirstName(String firstname,String order)
     {
@@ -58,4 +61,8 @@ public class EmployeeDao
     {
         return new TransactionExecuter<String,List<Employee>>().execute(new ObjectsGetter<Employee>(),"FROM Employee where address LIKE '%"+address+"%' "+TransactionExecuter.getOrderClause(order));                                
     }      
+    public static Employee getEmployee(String username)
+    {
+        return new TransactionExecuter<String,List<Employee>>().execute(new ObjectsGetter<Employee>(),"FROM Employee where username='"+username+"'").get(0);                                
+    }
 }

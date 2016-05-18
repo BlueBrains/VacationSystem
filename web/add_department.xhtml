@@ -8,15 +8,15 @@
 
     <ui:composition template="/templates/default/main.xhtml">
         <ui:define name="content">            
-            <h1 class="page-header "> <i class="fa fa-tachometer"></i>Add Department</h1>
+            <h1 class="page-header "> <i class="fa fa-tachometer"></i>إضافة قسم</h1>
             <h:form id="formView">
                 <div>
                     <p:panelGrid columns="2">
-                        <h:outputText value="Name"></h:outputText>
+                        <h:outputText value="اسم القسم"></h:outputText>
                         <p:inputText value="#{divisionManagedBean.d.name}"></p:inputText>
                     </p:panelGrid>
                 </div>
-                <p:commandButton value="Add" action="#{divisionManagedBean.addDivision()}"></p:commandButton>
+                <p:commandButton value="أضف" action="#{divisionManagedBean.addDivision()}"></p:commandButton>
             </h:form>
         </ui:define>
     </ui:composition> 

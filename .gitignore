@@ -1,7 +1,7 @@
-/dist/
-/nbproject/
-/build/
-/web/WEB-INF
+dist/
+nbproject/
+build/
 .directory
 build.xml
-/test/
+test/
+lib/

@@ -8,29 +8,29 @@
 
     <ui:composition template="/templates/default/main.xhtml">
         <ui:define name="content">            
-            <h1 class="page-header "> <i class="fa fa-tachometer"></i>Edit Employee</h1>
+            <h1 class="page-header "> <i class="fa fa-tachometer"></i>تعديل موظف</h1>
             <h:form id="formView">
                 <div>                    
                     <p:panelGrid columns="2">
-                        <h:outputText value="fist Name"></h:outputText>
+                        <h:outputText value="اسم الموظف"></h:outputText>
                         <p:inputText value="#{employeeManagedBean.e.firstname}"></p:inputText>
-                        <h:outputText value="last Name"></h:outputText>
+                        <h:outputText value="كنية الموظف"></h:outputText>
                         <p:inputText value="#{employeeManagedBean.e.lastname}"></p:inputText>
-                        <h:outputText value="Salary"></h:outputText>
+                        <h:outputText value="الراتب"></h:outputText>
                         <p:inputText value="#{employeeManagedBean.e.salary}"></p:inputText>                    
-                        <h:outputText value="department"></h:outputText>
+                        <h:outputText value="القسم"></h:outputText>
                         <p:inputText value="#{employeeManagedBean.divisionName}"></p:inputText>                                            
-                        <h:outputText value="type"></h:outputText>
+                        <h:outputText value="نوع الموظف"></h:outputText>
                         <h:selectOneRadio value="#{employeeManagedBean.eType}">
-                            <f:selectItem itemValue="manager" itemLabel="department manager" />
-                            <f:selectItem itemValue="managment employee" itemLabel="managment employee" />
-                            <f:selectItem itemValue="employee" itemLabel="normal employee" />
+                            <f:selectItem itemValue="manager" itemLabel="رئيس القسم" />
+                            <f:selectItem itemValue="managment employee" itemLabel="موظف إداري" />
+                            <f:selectItem itemValue="employee" itemLabel="موظف عادي" />
                         </h:selectOneRadio>
 <!--                        <h:outputText value="password"></h:outputText>
                         <p:password value="#{employeeManagedBean.e.password}"></p:password>>                                                                    -->
                     </p:panelGrid>
                 </div>                
-                <p:commandButton value="update" action="#{employeeManagedBean.updateEmployee()}" update=":formView"></p:commandButton>
+                <p:commandButton value="حدث" action="#{employeeManagedBean.updateEmployee()}" ></p:commandButton>
                                 
             </h:form>                                  
         </ui:define>

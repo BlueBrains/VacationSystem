@@ -32,16 +32,33 @@ public class EmployeeManagedBean {
     /** Creates a new instance of EmployeeManagedBean */
 
     private Employee e;
+    private String passwordplain;
     private String eType;
-    private String divisionName;
-    private List<Employee> employeeList;    
+    private String divisionName;    
+    
     
     public String geteType() {
         return eType;
     }
+    private List<Employee> employeeList;
 
-    public void seteType(String eType) {
-        this.eType = eType;
+    private String employeetype;
+
+    public String getEmployeetype() {
+        return employeetype;
+    }
+
+    public void setEmployeetype(String employeetype) {
+        this.employeetype = employeetype;
+    }
+    
+    
+    public String getPasswordplain() {
+        return passwordplain;
+    }
+
+    public void setPasswordplain(String passwordplain) {
+        this.passwordplain = passwordplain;
     }
 
     public String getDivisionName() {
@@ -94,11 +111,16 @@ public class EmployeeManagedBean {
     
     public String addEmployee()
     {
-        Division ed = DivisionDao.getDivisionsByName(divisionName, null).get(0);
-        e.setDivision(ed);
+        Division ed=null;
+        if((divisionName!=null)&&(!"".equals(divisionName)))
+        {
+            ed = DivisionDao.getDivisionsByName(divisionName, null).get(0);
+            e.setDivision(ed);
+        }
         Employee fe;
-        switch(eType){
-            case "manager": {
+        switch(employeetype){
+            case "manager": 
+            {
                 fe = new DivisionManager(e);
                 DivisionDao.initializeEmployees(ed);
                 ed.setDivisionmanager((DivisionManager)fe);                
@@ -110,8 +132,8 @@ public class EmployeeManagedBean {
                 break;
             default: fe = e;
         }
-        EmployeeDao.addEmployee(fe);                
-        DivisionDao.updateDivision(ed);
+        EmployeeDao.addEmployee(fe,passwordplain);                
+        //DivisionDao.updateDivision(ed);
         employeeList=EmployeeDao.getEmployees(null);
         return "employees.xhtml?faces-redirect=true";
     }
