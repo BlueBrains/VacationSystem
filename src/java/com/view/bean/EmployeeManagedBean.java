@@ -32,24 +32,17 @@ public class EmployeeManagedBean {
     /** Creates a new instance of EmployeeManagedBean */
 
     private Employee e;
-    private String passwordplain;
-    private String eType;
+    private String passwordplain;    
     private String divisionName;    
-    
-    
-    public String geteType() {
-        return eType;
-    }
     private List<Employee> employeeList;
-
-    private String employeetype;
+    private String employeeType;
 
     public String getEmployeetype() {
-        return employeetype;
+        return employeeType;
     }
 
     public void setEmployeetype(String employeetype) {
-        this.employeetype = employeetype;
+        this.employeeType = employeetype;
     }
     
     
@@ -100,11 +93,11 @@ public class EmployeeManagedBean {
             e = EmployeeDao.getEmployee(Integer.parseInt(params.get("id")));
             divisionName = e.getDivision().getName();
             if(e instanceof ManagementEmployee){
-                eType = "managment employee";
+                employeeType = "managment employee";
             }else if(e instanceof DivisionManager){
-                eType = "manager";
+                employeeType = "manager";
             }else if(e instanceof Employee){            
-                    eType = "employee";
+                    employeeType = "employee";
             }
         }
     }      
@@ -118,7 +111,7 @@ public class EmployeeManagedBean {
             e.setDivision(ed);
         }
         Employee fe;
-        switch(employeetype){
+        switch(employeeType){
             case "manager": 
             {
                 fe = new DivisionManager(e);
@@ -155,7 +148,7 @@ public class EmployeeManagedBean {
         Division ed = DivisionDao.getDivisionsByName(divisionName, null).get(0);
         e.setDivision(ed);
         Employee updatedEmp;
-        switch(eType){
+        switch(employeeType){
             case "manager": {
                 updatedEmp = new DivisionManager(e);
                 DivisionDao.initializeEmployees(ed);
