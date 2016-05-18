@@ -37,11 +37,11 @@ public class EmployeeManagedBean {
     private List<Employee> employeeList;
     private String employeeType;
 
-    public String getEmployeetype() {
+    public String getEmployeeType() {
         return employeeType;
     }
 
-    public void setEmployeetype(String employeetype) {
+    public void setEmployeeType(String employeetype) {
         this.employeeType = employeetype;
     }
     
