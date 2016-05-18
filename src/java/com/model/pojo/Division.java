@@ -47,7 +47,7 @@ public class Division implements Serializable {
 
     public void setDivisionmanager(DivisionManager divisionmanager) {
         this.divisionmanager = divisionmanager;
-        divisionmanager.setDivision(this);
+//        divisionmanager.setDivision(this);
     }
     
     

@@ -8,7 +8,7 @@
 
     <ui:composition template="/templates/default/main.xhtml">
         <ui:define name="content">            
-            <h1 class="page-header "> <i class="fa fa-tachometer"></i>Dashboard</h1>
+            <h1 class="page-header "> <i class="fa fa-tachometer"></i>Departments</h1>
             <h:form id="formView">
                 <p:dataTable id ="divisionDataTable" value="#{divisionManagedBean.divisionList}" var="division">
                     <p:column headerText="Num">
@@ -17,26 +17,16 @@
                     <p:column headerText="Name">
                         <h:outputText value="#{division.name}"></h:outputText>
                     </p:column>
-                    <p:column headerText="divisionManagerName">
+                    <p:column headerText="department Manager Name">
                         <h:outputText value="#{division.divisionmanager.firstname}"></h:outputText>
                     </p:column>
-                </p:dataTable>
-                <div>
-                    <p:panelGrid columns="2">
-                        <h:outputText value="division Name"></h:outputText>
-                        <p:inputText value="#{divisionManagedBean.d.name}"></p:inputText>
-                    </p:panelGrid>
-
-                </div>
-                <p:commandButton value="Add" action="#{divisionManagedBean.addDivision()}" update=":formView"></p:commandButton>            
-                <div>
-                    <p:panelGrid columns="2">
-                        <h:outputText value="Num"></h:outputText>
-                        <p:inputText value="#{divisionManagedBean.d.id}"></p:inputText>
-                    </p:panelGrid>
-                    <p:commandButton value="Delete" action="#{divisionManagedBean.deleteDivision()}" update=":formView"></p:commandButton>
-                </div>
-                <p:commandButton value="Redirect" action="#{divisionManagedBean.redirect2Add}" update=":formView"></p:commandButton>
+                    <p:column>    				
+                        <f:facet name="header">Action</f:facet>
+                        <h:commandLink value="Edit" action="#{divisionManagedBean.editAction(division)}" style="float:left" />
+                        <h:commandLink value="Delete" action="#{divisionManagedBean.deleteDivision(division)}" style="float:right" />
+                    </p:column>                                        
+                </p:dataTable>                
+                <p:commandButton value="New Department" action="#{divisionManagedBean.addAction}" style="padding: 3px; margin-top: 15px; " ></p:commandButton>
             </h:form>                                  
         </ui:define>
     </ui:composition> 

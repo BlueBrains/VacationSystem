@@ -8,51 +8,32 @@
 
     <ui:composition template="/templates/default/main.xhtml">
         <ui:define name="content">            
-            <h1 class="page-header "> <i class="fa fa-tachometer"></i>Dashboard</h1>
+            <h1 class="page-header "> <i class="fa fa-tachometer"></i>Employees</h1>
             <h:form id="formView">
                 <p:dataTable id ="employeeDataTable" value="#{employeeManagedBean.employeeList}" var="employee">
-                    <p:column headerText="Num">
-                        <h:outputText value="#{employee.id}"></h:outputText>
+                    <p:column headerText="Num">                        
+                        <h:outputText value="#{employee.id}"/>
                     </p:column>
-                    <p:column headerText="fName">
+                    <p:column headerText="first Name">                        
                         <h:outputText value="#{employee.firstname}"></h:outputText>
                     </p:column>
-                    <p:column headerText="lName">
+                    <p:column headerText="last Name">
                         <h:outputText value="#{employee.lastname}"></h:outputText>
                     </p:column>                    
-                    <p:column headerText="Age">
+                    <p:column headerText="Salary">
                         <h:outputText value="#{employee.salary}"></h:outputText>
                     </p:column>
-                    <p:column headerText="division">
-                        <h:outputText value="#{employee.division.name}"></h:outputText>
-                    </p:column>                    
-                </p:dataTable>                
-                <div>                    
-                    <p:panelGrid columns="2">
-                        <h:outputText value="fist Name"></h:outputText>
-                        <p:inputText value="#{employeeManagedBean.e.firstname}"></p:inputText>
-                        <h:outputText value="last Name"></h:outputText>
-                        <p:inputText value="#{employeeManagedBean.e.lastname}"></p:inputText>
-                        <h:outputText value="Salary"></h:outputText>
-                        <p:inputText value="#{employeeManagedBean.e.salary}"></p:inputText>                    
-                        <h:outputText value="department"></h:outputText>
-                        <p:inputText value="#{employeeManagedBean.divisionName}"></p:inputText>                                            
-                        <h:outputText value="type"></h:outputText>
-                        <p:inputText value="#{employeeManagedBean.eType}"></p:inputText>                                            
-<!--                        <h:outputText value="password"></h:outputText>
-                        <p:password value="#{employeeManagedBean.e.salary}"></p:password>>                                                                    -->
-                    </p:panelGrid>
-
-                </div>
-                <p:commandButton value="Add" action="#{employeeManagedBean.addEmployee()}" update=":formView"></p:commandButton>            
-                <div>
-                    <p:panelGrid columns="2">
-                        <h:outputText value="Num"></h:outputText>
-                        <p:inputText value="#{employeeManagedBean.e.id}"></p:inputText>
-                    </p:panelGrid>
-                    <p:commandButton value="Delete" action="#{employeeManagedBean.deleteEmployee()}" update=":formView"></p:commandButton>
-                </div>
-                <p:commandButton value="Redirect" action="#{employeeManagedBean.redirect2Add}" update=":formView"></p:commandButton>
+                    <p:column headerText="Department">
+                        <h:outputText value="#{employee.division.name}" ></h:outputText>
+                    </p:column>
+                    <p:column>    				
+                        <f:facet name="header">Action</f:facet>
+                        <h:commandLink value="Edit" action="#{employeeManagedBean.editAction(employee)}" style="float:left" />
+                        <h:commandLink value="Delete" action="#{employeeManagedBean.deleteEmployee(employee)}" style="float:right" />
+                    </p:column>				                    
+                </p:dataTable>                                
+                <h:commandButton value="New Employee" action="#{employeeManagedBean.addAction}" style="padding: 3px; margin-top: 15px; "/>
+                <br/><br/>                                
             </h:form>                                  
         </ui:define>
     </ui:composition> 

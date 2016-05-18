@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">      
+
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">            
+            <h1 class="page-header "> <i class="fa fa-tachometer"></i>Edit Employee</h1>
+            <h:form id="formView">
+                <div>                    
+                    <p:panelGrid columns="2">
+                        <h:outputText value="fist Name"></h:outputText>
+                        <p:inputText value="#{employeeManagedBean.e.firstname}"></p:inputText>
+                        <h:outputText value="last Name"></h:outputText>
+                        <p:inputText value="#{employeeManagedBean.e.lastname}"></p:inputText>
+                        <h:outputText value="Salary"></h:outputText>
+                        <p:inputText value="#{employeeManagedBean.e.salary}"></p:inputText>                    
+                        <h:outputText value="department"></h:outputText>
+                        <p:inputText value="#{employeeManagedBean.divisionName}"></p:inputText>                                            
+                        <h:outputText value="type"></h:outputText>
+                        <h:selectOneRadio value="#{employeeManagedBean.eType}">
+                            <f:selectItem itemValue="manager" itemLabel="department manager" />
+                            <f:selectItem itemValue="managment employee" itemLabel="managment employee" />
+                            <f:selectItem itemValue="employee" itemLabel="normal employee" />
+                        </h:selectOneRadio>
+<!--                        <h:outputText value="password"></h:outputText>
+                        <p:password value="#{employeeManagedBean.e.password}"></p:password>>                                                                    -->
+                    </p:panelGrid>
+                </div>                
+                <p:commandButton value="update" action="#{employeeManagedBean.updateEmployee()}" update=":formView"></p:commandButton>
+                                
+            </h:form>                                  
+        </ui:define>
+    </ui:composition> 
+</html>

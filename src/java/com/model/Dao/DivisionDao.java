@@ -6,6 +6,7 @@
 package com.model.Dao;
 
 import com.model.pojo.Division;
+import com.model.pojo.Employee;
 import com.util.EmployeesInitializer;
 import com.util.ObjectAdder;
 import com.util.ObjectGetter;

@@ -26,7 +26,8 @@ import javax.persistence.OneToMany;
 @Entity
 @Inheritance
 public class Employee implements Serializable 
-{
+{        
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)    
     private Integer id;
@@ -51,14 +52,15 @@ public class Employee implements Serializable
     private Division division;
 
     public Employee(Employee e){
-        setAddress(e.getAddress());
-        setDivision(e.getDivision());
-        setFirstname(e.getFirstname());
-        setLastname(e.getLastname());
-        setId(e.getId());
-        setPhonenumber(e.getPhonenumber());
-        setSalary(e.getSalary());                                    
-    }
+        address = e.getAddress();
+        division = e.getDivision();
+        firstname = e.getFirstname();
+        lastname = e.getLastname();
+        id = e.getId();
+        phonenumber = e.getPhonenumber();
+        salary = e.getSalary();
+    }       
+    
     public Division getDivision() {
         return division;
     }
