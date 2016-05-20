@@ -117,6 +117,9 @@ public class Employee implements Serializable
         id = e.getId();
         phonenumber = e.getPhonenumber();
         salary = e.getSalary();
+        username = e.getUsername();
+        passwordhash = e.getPasswordhash();
+        passwordsalt = e.getPasswordsalt();
     }       
     
     public Division getDivision() {

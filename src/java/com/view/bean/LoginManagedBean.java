@@ -78,7 +78,7 @@ public class LoginManagedBean
 
                 Session session=currentemp.getSession();
                 // save current username in the session, so we have access to our User model
-                session.setAttribute("username", username);
+                session.setAttribute("username", username);                
                 System.out.println(session.getTimeout());
                 FacesContext.getCurrentInstance().getExternalContext().redirect("employee_home.xhtml");
             } 

@@ -16,9 +16,13 @@ import javax.persistence.Entity;
 public class CompanyManager extends Employee implements Serializable 
 {   
 
-    public CompanyManager() {
+    public CompanyManager() {       
     }
-
+    
+    public CompanyManager(Employee e) {
+        super(e);
+    }
+    
     public CompanyManager(String fname, String lname) {
         super(fname, lname);
     }

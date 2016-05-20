@@ -6,6 +6,7 @@
 package com.view.bean;
 
 import com.model.Dao.DivisionDao;
+import com.model.Dao.EmployeeDao;
 import javax.faces.bean.ManagedBean;
 import com.model.pojo.Division;
 import com.model.pojo.Employee;
@@ -24,7 +25,8 @@ import javax.faces.context.FacesContext;
 @ViewScoped
 public class DivisionManagedBean {
     private Division d;
-    private List<Division> divisionList;    
+    private List<Division> divisionList;
+    private List<Employee> employeeList;
 
     public Division getD() {
         return d;
@@ -42,6 +44,14 @@ public class DivisionManagedBean {
         this.divisionList = divisionList;
     }
 
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
+
     public DivisionManagedBean() {        
         d = new Division();
         divisionList = new ArrayList<Division>();
@@ -54,7 +64,8 @@ public class DivisionManagedBean {
         Map<String, String> params = FacesContext.getCurrentInstance()
                 .getExternalContext().getRequestParameterMap();                
         if(params.get("id")!=null){
-//            d = DivisionDao.getDivision(Integer.parseInt(params.get("id")));
+            d = DivisionDao.getDivision(Integer.parseInt(params.get("id")));
+            employeeList = EmployeeDao.getEmployeesByDivision(d.getName(), null);
         }
     }
     
@@ -63,8 +74,8 @@ public class DivisionManagedBean {
         divisionList = DivisionDao.getDivisions(null);
         return "divisions.xhtml?faces-redirect=true";
     }
-    public void deleteDivision(){
-        DivisionDao.removeDivision(d);
+    public void deleteDivision(Division dep){
+        DivisionDao.removeDivision(dep);
         divisionList = DivisionDao.getDivisions(null);
     }
     
@@ -80,6 +91,14 @@ public class DivisionManagedBean {
     
     public String editAction(Division dep) {
             return "edit_department.xhtml?faces-redirect=true&id="+dep.getId();
+    }    
+    
+    public String editEmployeeAction(Employee emp) {
+            return "edit_employee.xhtml?faces-redirect=true&id="+emp.getId();
+    }            
+    
+    public String getEmployeeType(Employee emp){
+        return emp.getClass().getSimpleName();
     }
         
 }

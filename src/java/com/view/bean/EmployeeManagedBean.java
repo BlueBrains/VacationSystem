@@ -7,6 +7,7 @@ package com.view.bean;
  */
 import com.model.Dao.DivisionDao;
 import com.model.Dao.EmployeeDao;
+import com.model.pojo.CompanyManager;
 import com.model.pojo.Division;
 import com.model.pojo.DivisionManager;
 import com.model.pojo.Employee;
@@ -18,6 +19,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import org.apache.jasper.tagplugins.jstl.ForEach;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 /**
@@ -35,7 +37,7 @@ public class EmployeeManagedBean {
     private String passwordplain;    
     private String divisionName;    
     private List<Employee> employeeList;
-    private String employeeType;
+    private String employeeType;    
 
     public String getEmployeeType() {
         return employeeType;
@@ -104,18 +106,27 @@ public class EmployeeManagedBean {
     
     public String addEmployee()
     {
-        Division ed=null;
-        if((divisionName!=null)&&(!"".equals(divisionName)))
-        {
-            ed = DivisionDao.getDivisionsByName(divisionName, null).get(0);
-            e.setDivision(ed);
-        }
+        Division ed = DivisionDao.getDivisionsByName(divisionName, null).get(0);
+        e.setDivision(ed);        
         Employee fe;
         switch(employeeType){
+            case "company manager": 
+            {
+                fe = new CompanyManager(e);     
+                e.setDivision(null);
+            }
+                break;            
             case "manager": 
             {
                 fe = new DivisionManager(e);
                 DivisionDao.initializeEmployees(ed);
+                Employee lastManager = ed.getDivisionmanager();
+                if(lastManager!=null){                    
+                    Employee normalEmp = new Employee(lastManager);
+                    updateEmployeeType(normalEmp);
+                    ed.setDivisionmanager(null);
+                    DivisionDao.updateDivision(ed);
+                }
                 ed.setDivisionmanager((DivisionManager)fe);                
             }
                 break;            
@@ -219,4 +230,12 @@ public class EmployeeManagedBean {
 //            divisionName = emp.getDivision().getName();
             return "edit_employee.xhtml?faces-redirect=true&id="+emp.getId();
     }        
+    
+    public boolean isCompanyHasManager(){
+        for(Employee emp: employeeList){
+            if(emp instanceof CompanyManager)
+                return true;
+        }
+        return false;
+    }
 }
