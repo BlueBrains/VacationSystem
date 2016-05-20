@@ -11,16 +11,12 @@ import com.model.pojo.CompanyManager;
 import com.model.pojo.DivisionManager;
 import com.model.pojo.Employee;
 import com.model.pojo.VacationRequest;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import org.apache.shiro.SecurityUtils;
 import org.primefaces.context.RequestContext;
-import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -146,5 +142,8 @@ public class VacationManagedBean {
     
     public String addAction(){        
         return "new_vacationRequest.xhtml?faces-redirect=true";    
+    }
+    public String getStatus(VacationRequest ve) {
+        return ve.getStatus().toString();
     }
 }
