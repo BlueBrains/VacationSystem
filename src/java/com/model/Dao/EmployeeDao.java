@@ -15,9 +15,9 @@ import com.util.ObjectsGetter;
 import com.util.PasswordGenerator;
 import com.util.VacationRequestsInitializer;
 import java.util.List;
-import org.apache.shiro.crypto.RandomNumberGenerator;
-import org.apache.shiro.crypto.SecureRandomNumberGenerator;
-import org.apache.shiro.crypto.hash.Sha256Hash;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.subject.Subject;
 
 
 /**
@@ -31,15 +31,17 @@ public class EmployeeDao
         new TransactionExecuter<Employee,Void>().execute(new VacationRequestsInitializer<>(), emp);                
     }
     
+    @RequiresRoles("Administrator")
     public static void addEmployee(Employee emp,String plaintextpassword)
     {                
         PasswordGenerator.generatePassword(emp, plaintextpassword);
         new TransactionExecuter<Employee,Void>().execute(new ObjectAdder<Employee>(), emp);        
     }
+    
     public static void removeEmployee(Employee emp)
     {
         new TransactionExecuter<Employee,Void>().execute(new ObjectRemover<Employee>(), emp);
-    }
+    }    
     public static void updateEmployee(Employee emp)
     {
         new TransactionExecuter<Employee,Void>().execute(new ObjectUpdater<Employee>(),emp);

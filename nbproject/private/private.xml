@@ -3,15 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/molham/NetBeansProjects/vacationSys/web/WEB-INF/web.xml</file>
-            <file>file:/home/molham/NetBeansProjects/vacationSys/src/java/com/model/Dao/EmployeeDao.java</file>
-            <file>file:/home/molham/NetBeansProjects/vacationSys/src/java/com/util/TransactionExecuter.java</file>
-            <file>file:/home/molham/NetBeansProjects/vacationSys/web/index.xhtml</file>
-            <file>file:/home/molham/NetBeansProjects/vacationSys/web/templates/default/main.xhtml</file>
-            <file>file:/home/molham/NetBeansProjects/vacationSys/web/welcomePrimefaces.xhtml</file>
-            <file>file:/home/molham/NetBeansProjects/vacationSys/src/java/com/model/pojo/Employee.java</file>
-            <file>file:/home/molham/NetBeansProjects/vacationSys/src/java/com/view/bean/EmployeeManagedBean.java</file>
-            <file>file:/home/molham/NetBeansProjects/vacationSys/src/java/com/util/ObjectGetter.java</file>
+            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/index.xhtml</file>
+            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/tmp/testnot.xhtml</file>
+            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/view/bean/TestBean.java</file>
+            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/model/channel/NotifyResource.java</file>
+            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/view/bean/EmployeeManagedBean.java</file>
+            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/model/pojo/DivisionManager.java</file>
+            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/WEB-INF/glassfish-resources.xml</file>
+            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/view/bean/LoginManagedBean.java</file>
+            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/model/pojo/Employee.java</file>
+            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/WEB-INF/web.xml</file>
+            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/WEB-INF/shiro.ini</file>
         </group>
     </open-files>
 </project-private>

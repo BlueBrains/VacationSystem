@@ -7,8 +7,8 @@
     <filter>
         <filter-name>ShiroFilter</filter-name>
         <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
-    </filter>
-
+    </filter>    
+    
     <filter-mapping>
         <filter-name>ShiroFilter</filter-name>
         <url-pattern>/*</url-pattern>
@@ -16,7 +16,7 @@
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
         <dispatcher>ERROR</dispatcher>
-    </filter-mapping>
+    </filter-mapping>    
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
@@ -29,6 +29,19 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Push Servlet</servlet-name>
+        <servlet-class>org.primefaces.push.PushServlet</servlet-class>
+        <init-param>
+            <param-name>org.atmosphere.cpr.broadcasterCacheClass</param-name>
+            <param-value>org.atmosphere.cache.UUIDBroadcasterCache</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>        
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Push Servlet</servlet-name>
+        <url-pattern>/primepush/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -53,6 +66,10 @@
     <mime-mapping>
         <extension>woff</extension>
         <mime-type>application/x-font-woff</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>woff2</extension>
+        <mime-type>application/x-font-woff2</mime-type>        
     </mime-mapping>
     <mime-mapping>
         <extension>svg</extension>

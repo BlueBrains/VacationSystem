@@ -5,9 +5,13 @@
  */
 package com.view.bean;
 
+import com.model.Dao.EmployeeDao;
+import com.model.pojo.DivisionManager;
+import com.model.pojo.Employee;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -20,6 +24,8 @@ import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.Factory;
+import org.primefaces.push.EventBus;
+import org.primefaces.push.EventBusFactory;
 
 /**
  *
@@ -79,8 +85,13 @@ public class LoginManagedBean
                 Session session=currentemp.getSession();
                 // save current username in the session, so we have access to our User model
                 session.setAttribute("username", username);
-                System.out.println(session.getTimeout());
                 FacesContext.getCurrentInstance().getExternalContext().redirect("employee_home.xhtml");
+                Employee emp=EmployeeDao.getEmployee(username);                
+                if(emp instanceof DivisionManager)
+                {
+                    EventBus eventBus = EventBusFactory.getDefault().eventBus();
+                    eventBus.publish("أحمد",new FacesMessage("division manager logged in"));
+                }
             } 
             catch (UnknownAccountException uae) 
             {

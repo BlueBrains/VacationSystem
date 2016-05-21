@@ -14,34 +14,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 
 /**
  *
  * @author abd
  */
 @Entity
-public class EmployeePermission implements Serializable 
-{    
+public class EmployeePermission implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
+
     @Basic(optional=false)
     private String permission;
     
-    @ManyToMany
-    @JoinColumn(name="employee_id")
-    private List<Employee> employees;
-
-    public String getPermission() {
-        return permission;
-    }
-
-    public void setPermission(String permission) {
-        this.permission = permission;
-    }
-
     
     public Integer getId() {
         return id;
@@ -51,27 +39,6 @@ public class EmployeePermission implements Serializable
         this.id = id;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
-    }
-
-    public void addEmployee(Employee employee)
-    {
-        employees.add(employee);
-        employee.getPermissions().add(this);
-    }
-    public void removeEmployee(Employee employee)
-    {
-        employees.remove(employee);
-        employee.getPermissions().remove(this);
-    }
-
-    
-    
     @Override
     public int hashCode() {
         int hash = 0;

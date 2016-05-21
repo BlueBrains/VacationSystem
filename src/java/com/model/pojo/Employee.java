@@ -56,14 +56,13 @@ public class Employee implements Serializable
     private Integer salary;
     
     private String phonenumber;
-    
     @OneToMany(mappedBy="employee",cascade={CascadeType.DETACH,CascadeType.REMOVE,CascadeType.REFRESH},fetch=FetchType.LAZY)
     private List<VacationRequest> vacationrequests=new ArrayList<>();
 
     @ManyToOne(cascade={CascadeType.REFRESH})
     private Division division;
 
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinColumn(name="permission_id")
     private List<EmployeePermission> permissions;
 
@@ -73,16 +72,18 @@ public class Employee implements Serializable
 
     public void setPermissions(List<EmployeePermission> permissions) {
         this.permissions = permissions;
-    }
-    
+    }  
+
     public void addPermission(EmployeePermission permission)
     {
-        permission.addEmployee(this);
+        permissions.add(permission);
     }
+    
     public void removePermission(EmployeePermission permission)
     {
-        permission.removeEmployee(this);
+        permissions.remove(permission);
     }
+            
     public String getUsername() {
         return username;
     }
@@ -115,7 +116,10 @@ public class Employee implements Serializable
         setLastname(e.getLastname());
         setId(e.getId());
         setPhonenumber(e.getPhonenumber());
-        setSalary(e.getSalary());                                    
+        setSalary(e.getSalary());      
+        setUsername(e.getUsername());
+        setPasswordhash(e.getPasswordhash());
+        setPasswordsalt(e.getPasswordsalt());
     }
     public Division getDivision() {
         return division;

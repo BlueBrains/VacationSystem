@@ -131,6 +131,7 @@ public class EmployeeManagedBean
         EmployeeDao.addEmployee(fe,passwordplain);                
         //DivisionDao.updateDivision(ed);
         employeeList=EmployeeDao.getEmployees(null);
+        
     }
     
     
