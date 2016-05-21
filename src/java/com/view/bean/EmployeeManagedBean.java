@@ -137,7 +137,7 @@ public class EmployeeManagedBean {
             default: fe = e;
         }
         EmployeeDao.addEmployee(fe,passwordplain);                
-        //DivisionDao.updateDivision(ed);
+        DivisionDao.updateDivision(ed);
         employeeList=EmployeeDao.getEmployees(null);
         return "employees.xhtml?faces-redirect=true";
     }
