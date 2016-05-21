@@ -108,7 +108,7 @@ public class VacationManagedBean {
             eventBus=EventBusFactory.getDefault().eventBus();
         }else if(registeredUser instanceof CompanyManager){
             employeesRequestsList = VacationRequestDao.getVacationRequestsWithEmployee(" where v.status not in ( '"+
-//                    VacationRequest.VacationStatus.UnKnown+"', '"+
+                    VacationRequest.VacationStatus.UnKnown+"', '"+
                     VacationRequest.VacationStatus.RejectedByDivisionManager+"' )",null);        
 //            List<VacationRequest> DivisionManagerReq = VacationRequestDao.getVacationRequestsWithEmployee(
 //                    "where e.type = '"+DivisionManager.class.getSimpleName()
@@ -116,6 +116,9 @@ public class VacationManagedBean {
 //            employeesRequestsList.addAll(DivisionManagerReq);
             eventBus=EventBusFactory.getDefault().eventBus();
 
+            List<VacationRequest> DivisionManagerReq = VacationRequestDao.getVacationRequestsWithDivisions(
+                    "where d.divisionmanager = e ",null);
+            employeesRequestsList.addAll(DivisionManagerReq);
         }
         
     }    
