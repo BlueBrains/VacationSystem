@@ -104,8 +104,12 @@ public class VacationManagedBean {
                     "' and e.id <> '"+registeredUser.getId()+"'",null);
         }else if(registeredUser instanceof CompanyManager){
             employeesRequestsList = VacationRequestDao.getVacationRequestsWithEmployee(" where v.status not in ( '"+
-                    VacationRequest.VacationStatus.UnKnown+"', '"+
+//                    VacationRequest.VacationStatus.UnKnown+"', '"+
                     VacationRequest.VacationStatus.RejectedByDivisionManager+"' )",null);        
+//            List<VacationRequest> DivisionManagerReq = VacationRequestDao.getVacationRequestsWithEmployee(
+//                    "where e.type = '"+DivisionManager.class.getSimpleName()
+//                    +"' ",null);
+//            employeesRequestsList.addAll(DivisionManagerReq);
         }
     }    
     
