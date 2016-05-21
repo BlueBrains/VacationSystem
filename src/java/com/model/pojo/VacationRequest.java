@@ -6,6 +6,7 @@
 package com.model.pojo;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,11 +14,11 @@ import javax.persistence.Id;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
-import javax.persistence.EntityListeners;
 import static javax.persistence.EnumType.STRING;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 /**
  *
@@ -29,12 +30,14 @@ public class VacationRequest implements Serializable
 {
     public static enum VacationType
     {
-        Holiday
+        Official,
+        Sick,
+        SalaryCut
     }
     public static enum VacationStatus
     {
         UnKnown,
-        AcceptedByDivisionManagers,
+        AcceptedByDivisionManager,
         Accepted,
         RejectedByDivisionManager,
         RejectedByCompanyManager
@@ -49,11 +52,11 @@ public class VacationRequest implements Serializable
     private Date creationdate;
     
     @Basic(optional=false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date begindate;
     
     @Basic(optional=false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date enddate;
     
     @Basic(optional=false)
@@ -64,7 +67,12 @@ public class VacationRequest implements Serializable
     @Enumerated(STRING)
     private VacationType vacationtype;
     
-    public VacationRequest() 
+    @PrePersist
+     protected void onCreate() {
+       creationdate = new Timestamp(new Date().getTime());
+     }    
+    
+     public VacationRequest() 
     {
         status=VacationStatus.UnKnown;
     }

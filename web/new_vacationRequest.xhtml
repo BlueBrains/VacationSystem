@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" dir="rtl" lang="ar">      
+
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">            
+            <h1 class="page-header "> <i class="fa fa-tachometer"></i>طلب إجازة</h1>
+            <h:form id="form">
+                <p:growl id="msgs" showDetail="true" />
+
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel for="datetime1" value="تاريخ البدء" />
+                    <p:calendar id="datetime1" value="#{vacationManagedBean.v.begindate}" pattern="MM/dd/yyyy HH:mm:ss" />
+                    <p:outputLabel for="datetime2" value="تاريخ الانتهاء" />
+                    <p:calendar id="datetime2" value="#{vacationManagedBean.v.enddate}" pattern="MM/dd/yyyy HH:mm:ss"></p:calendar>
+                </h:panelGrid>
+                
+                <h:outputText value="نوع الإجازة" />
+                <h:selectOneRadio value="#{vacationManagedBean.v.vacationtype}" layout="pageDirection">
+                    <f:selectItem itemValue="Official" itemLabel="إجازة رسمية"/>
+                    <f:selectItem itemValue="Sick" itemLabel="إجازة مرضية" />
+                    <f:selectItem itemValue="SalaryCut" itemLabel="إجازة مقطوعة الراتب" />
+                </h:selectOneRadio>                
+
+                <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                    <h:outputText>هل أنت متأكد من المعلومات ؟</h:outputText>
+                    <p:panelGrid id="display" columns="2" columnClasses="label,value">                        
+                        <h:outputText value="تاريخ البدء" />
+                        <h:outputText value="#{vacationManagedBean.v.begindate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="تاريخ الانتهاء" />
+                        <h:outputText value="#{vacationManagedBean.v.enddate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="أرسل"  action="#{vacationManagedBean.addVacationRequest()}" icon="ui-icon-check"></p:commandButton>                    
+                </p:dialog>
+                
+                <p:commandButton value="أرسل" actionListener="#{vacationManagedBean.click}" update="msgs"  icon="ui-icon-check"></p:commandButton>
+            </h:form>                                                  
+        </ui:define>
+    </ui:composition>
+</html>

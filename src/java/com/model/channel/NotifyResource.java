@@ -6,10 +6,7 @@
 package com.model.channel;
 
 import javax.faces.application.FacesMessage;
-import org.primefaces.push.EventBus;
-import org.primefaces.push.RemoteEndpoint;
 import org.primefaces.push.annotation.OnMessage;
-import org.primefaces.push.annotation.OnOpen;
 import org.primefaces.push.annotation.PathParam;
 import org.primefaces.push.annotation.PushEndpoint;
 import org.primefaces.push.annotation.Singleton;

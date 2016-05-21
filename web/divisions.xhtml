@@ -4,11 +4,11 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"  
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">      
+      xmlns:p="http://primefaces.org/ui" dir="rtl" lang="ar">
 
     <ui:composition template="/templates/default/main.xhtml">
         <ui:define name="content">            
-            <h1 class="page-header "> <i class="fa fa-tachometer"></i>اللوحة الرئيسية</h1>
+            <h1 class="page-header "> <i class="fa fa-tachometer"></i>الأقسام</h1>
             <h:form id="formView">
                 <p:dataTable id ="divisionDataTable" value="#{divisionManagedBean.divisionList}" var="division">
                     <p:column headerText="الرقم">
@@ -20,23 +20,13 @@
                     <p:column headerText="رئيس القسم">
                         <h:outputText value="#{division.divisionmanager.firstname}"></h:outputText>
                     </p:column>
-                </p:dataTable>
-                <div>
-                    <p:panelGrid columns="2">
-                        <h:outputText value="القسم"></h:outputText>
-                        <p:inputText value="#{divisionManagedBean.d.name}"></p:inputText>
-                    </p:panelGrid>
-
-                </div>
-                <p:commandButton value="أضف" action="#{divisionManagedBean.addDivision()}" update=":formView"></p:commandButton>            
-                <div>
-                    <p:panelGrid columns="2">
-                        <h:outputText value="الرقم"></h:outputText>
-                        <p:inputText value="#{divisionManagedBean.d.id}"></p:inputText>
-                    </p:panelGrid>
-                    <p:commandButton value="حذف" action="#{divisionManagedBean.deleteDivision()}" update=":formView"></p:commandButton>
-                </div>
-                <p:commandButton value="انتقال إلى" action="#{divisionManagedBean.redirect2Add}" update=":formView"></p:commandButton>
+                    <p:column>    				
+                        <f:facet name="header">إجراء</f:facet>
+                        <h:commandLink value="تعديل" action="#{divisionManagedBean.editAction(division)}" style="float:left" />
+                        <h:commandLink value="حذف" action="#{divisionManagedBean.deleteDivision(division)}" style="float:right" />
+                    </p:column>                                        
+                </p:dataTable>                
+                <p:commandButton value="قسم جديد" action="#{divisionManagedBean.addAction}" style="padding: 3px; margin-top: 15px; " ></p:commandButton>
             </h:form>                                  
         </ui:define>
     </ui:composition> 

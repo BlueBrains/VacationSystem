@@ -10,40 +10,6 @@
         <ui:define name="content">            
             <h1 class="page-header "> <i class="fa fa-tachometer"></i> اللوحة الرئيسية</h1>
             <h:form id="formView">
-                <p:dataTable id ="employeeDataTable" value="#{employeeManagedBean.employeeList}" var="employee">
-                    <p:column headerText="Num">
-                        <h:outputText value="#{employee.id}"></h:outputText>
-                    </p:column>
-                    <p:column headerText="fName">
-                        <h:outputText value="#{employee.firstname}"></h:outputText>
-                    </p:column>
-                    <p:column headerText="lName">
-                        <h:outputText value="#{employee.lastname}"></h:outputText>
-                    </p:column>                    
-                    <p:column headerText="Age">
-                        <h:outputText value="#{employee.salary}"></h:outputText>
-                    </p:column>
-                </p:dataTable>
-                <div>
-                    <p:panelGrid columns="2">
-                        <h:outputText value="fName"></h:outputText>
-                        <p:inputText value="#{employeeManagedBean.e.firstname}"></p:inputText>
-                        <h:outputText value="lName"></h:outputText>
-                        <p:inputText value="#{employeeManagedBean.e.lastname}"></p:inputText>
-                        <h:outputText value="Age"></h:outputText>
-                        <p:inputText value="#{employeeManagedBean.e.salary}"></p:inputText>                    
-                    </p:panelGrid>
-
-                </div>
-                <p:commandButton value="Add" action="#{employeeManagedBean.addEmployee()}" update=":formView"></p:commandButton>            
-                <div>
-                    <p:panelGrid columns="2">
-                        <h:outputText value="Num"></h:outputText>
-                        <p:inputText value="#{employeeManagedBean.e.id}"></p:inputText>
-                    </p:panelGrid>
-                    <p:commandButton value="Delete" action="#{employeeManagedBean.deleteEmployee()}" update=":formView"></p:commandButton>
-                </div>
-                <p:commandButton value="Redirect" action="#{employeeManagedBean.redirect2Add}" update=":formView"></p:commandButton>
             </h:form>                                  
         </ui:define>
     </ui:composition> 

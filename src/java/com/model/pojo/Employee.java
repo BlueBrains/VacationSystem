@@ -29,7 +29,8 @@ import javax.persistence.OneToMany;
 @Entity
 @Inheritance
 public class Employee implements Serializable 
-{
+{        
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)    
     private Integer id;
@@ -121,6 +122,8 @@ public class Employee implements Serializable
         setPasswordhash(e.getPasswordhash());
         setPasswordsalt(e.getPasswordsalt());
     }
+
+    
     public Division getDivision() {
         return division;
     }

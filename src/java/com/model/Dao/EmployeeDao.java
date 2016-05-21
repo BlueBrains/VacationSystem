@@ -31,7 +31,6 @@ public class EmployeeDao
         new TransactionExecuter<Employee,Void>().execute(new VacationRequestsInitializer<>(), emp);                
     }
     
-    @RequiresRoles("Administrator")
     public static void addEmployee(Employee emp,String plaintextpassword)
     {                
         PasswordGenerator.generatePassword(emp, plaintextpassword);
@@ -64,8 +63,13 @@ public class EmployeeDao
     }
     public static List<Employee> getEmployeesByAddress(String address,String order)
     {
-        return new TransactionExecuter<String,List<Employee>>().execute(new ObjectsGetter<Employee>(),"FROM Employee where address LIKE '%"+address+"%' "+TransactionExecuter.getOrderClause(order));                                
+        return new TransactionExecuter<String,List<Employee>>().execute(new ObjectsGetter<Employee>(),"FROM Employee where address LIKE '%"+address+"%' "+TransactionExecuter.getOrderClause(order));
     }      
+    public static List<Employee> getEmployeesByDivision(String division,String order)
+    {
+        return new TransactionExecuter<String,List<Employee>>().execute(new ObjectsGetter<Employee>(),"FROM Employee e "
+                + "INNER JOIN e.division d where d.name = '"+division+"' "+TransactionExecuter.getOrderClause(order));
+    }    
     public static Employee getEmployee(String username)
     {
         return new TransactionExecuter<String,List<Employee>>().execute(new ObjectsGetter<Employee>(),"FROM Employee where username='"+username+"'").get(0);                                

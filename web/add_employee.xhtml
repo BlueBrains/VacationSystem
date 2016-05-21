@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core" dir="rtl" lang="ar">            
+
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">            
+            <h1 class="page-header "> <i class="fa fa-tachometer"></i>إضافة موظف</h1>
+            <h:form id="formView">
+                <div>                    
+                    <p:panelGrid columns="2">
+                        <h:outputText value="اسم الموظف"></h:outputText>
+                        <p:inputText value="#{employeeManagedBean.e.firstname}"></p:inputText>
+                        <h:outputText value="كنية الموظف"></h:outputText>
+                        <p:inputText value="#{employeeManagedBean.e.lastname}"></p:inputText>
+                        <h:outputText value="الراتب"></h:outputText>
+                        <p:inputText value="#{employeeManagedBean.e.salary}"></p:inputText>                    
+                        <h:outputText value="القسم"></h:outputText>
+                        <h:selectOneMenu value="#{employeeManagedBean.divisionName}" >
+                            <f:selectItems value="#{divisionManagedBean.divisionList}" var="dep"
+                                           itemLabel="#{dep.name}" itemValue="#{dep.name}" />
+                        </h:selectOneMenu>                                                
+                        <h:outputText value="نوع الموظف"></h:outputText>
+                        <h:selectOneRadio value="#{employeeManagedBean.employeeType}" layout="pageDirection">
+                            <c:if test="#{not employeeManagedBean.companyHasManager}">
+                                <f:selectItem itemValue="company manager" itemLabel="رئيس الشركة" />
+                            </c:if>                            
+                            <f:selectItem itemValue="manager" itemLabel="رئيس القسم"/>
+                            <f:selectItem itemValue="managment employee" itemLabel="موظف إداري" />
+                            <f:selectItem itemValue="employee" itemLabel="موظف عادي" />                            
+                        </h:selectOneRadio>
+                        <h:outputText value="اسم المستخدم"></h:outputText>
+                        <h:inputText value="#{employeeManagedBean.e.username}"></h:inputText>
+                        <h:outputText value="كلمة السر"></h:outputText>
+                        <p:password value="#{employeeManagedBean.passwordplain}"></p:password>                                                                                           
+                    </p:panelGrid>
+                </div>                
+                <p:commandButton value="أضف" action="#{employeeManagedBean.addEmployee()}"></p:commandButton>            
+            </h:form>                                  
+        </ui:define>
+    </ui:composition> 
+</html>

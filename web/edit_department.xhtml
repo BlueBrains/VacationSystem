@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" dir="rtl" lang="ar">      
+
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">            
+            <h1 class="page-header "> <i class="fa fa-tachometer"></i>تعديل قسم</h1>
+            <h:form id="formView" style="margin-top: 30px">
+                <div>                    
+                    <p:panelGrid columns="2">
+                        <h:outputText value="اسم القسم"></h:outputText>
+                        <p:inputText value="#{divisionManagedBean.d.name}"></p:inputText>                        
+                    </p:panelGrid>
+                </div>                            
+                <p:dataTable id ="divisionEmpDataTable" value="#{divisionManagedBean.employeeList}" var="emp" style="margin-top: 30px">
+                    <p:column headerText="الرقم">
+                        <h:outputText value="#{emp[0].id}"></h:outputText>
+                    </p:column>
+                    <p:column headerText="اسم الموظف">
+                        <h:outputText value="#{emp[0].fullName}"></h:outputText>
+                    </p:column>
+                    <p:column headerText="الراتب">
+                        <h:outputText value="#{emp[0].salary}"></h:outputText>
+                    </p:column>
+                    <p:column headerText="نوع الموظف">
+                        <h:outputText value="#{divisionManagedBean.getEmployeeType(emp[0])}"></h:outputText>
+                    </p:column>                            
+                    <p:column>    				
+                        <f:facet name="header">إجراء</f:facet>
+                        <h:commandLink value="تعديل" action="#{divisionManagedBean.editEmployeeAction(emp[0])}" style="float:left" />
+                    </p:column>
+                </p:dataTable>                
+                
+                <p:commandButton value="حدث" action="#{divisionManagedBean.updateDivision()}"></p:commandButton>                                            
+            </h:form>                                  
+        </ui:define>
+    </ui:composition> 
+</html>

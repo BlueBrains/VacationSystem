@@ -101,5 +101,15 @@ public class VacationRequestDao
     {
         return new TransactionExecuter<String,List<VacationRequest>>().execute(new ObjectsGetter<VacationRequest>(),"FROM VacationRequest "+whereclause+" "+TransactionExecuter.getOrderClause(order));                
     }
-    
+    public static List<VacationRequest> getVacationRequestsWithEmployee(String whereclause,String order)
+    {
+        return new TransactionExecuter<String,List<VacationRequest>>().execute(new ObjectsGetter<VacationRequest>(),"FROM VacationRequest v"
+                + " INNER JOIN v.employee e "+whereclause+" "+TransactionExecuter.getOrderClause(order));
+    }    
+    public static List<VacationRequest> getVacationRequestsWithDivisions(String whereclause,String order)
+    {
+        return new TransactionExecuter<String,List<VacationRequest>>().execute(new ObjectsGetter<VacationRequest>(),"FROM VacationRequest v"
+                + " INNER JOIN v.employee e"
+                + " INNER JOIN e.division d "+whereclause+" "+TransactionExecuter.getOrderClause(order));
+    }    
 }
