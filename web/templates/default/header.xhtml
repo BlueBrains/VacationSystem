@@ -6,8 +6,10 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      >
  
     <ui:composition>
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -29,15 +31,15 @@ and open the template in the editor.
                         <li><a href="#">المساعدة</a></li>
                     </ul>
                     <form class="navbar-form navbar-right">
-                        <input type="text" class="form-control" placeholder="بحث..." />
+                        <input class="form-control" placeholder="بحث..." />
                     </form>
                 </div>
             </div>
-        </div>
-        <p:socket channel="#{employeeManagedBean.currentEmployee}" onMessage="handleMessage"></p:socket>
+        </div>        
+        <p:socket channel="/#{employeeManagedBean.currentEmployee}" onMessage="handleMessage"></p:socket>
         <script>
             function handleMessage(facesmessage)
-            {
+            {               
                 console.log(facesmessage);
             }
         </script>

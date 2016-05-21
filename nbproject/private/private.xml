@@ -3,29 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/tmp/testnot.xhtml</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/model/Dao/EmployeeDao.java</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/model/pojo/VacationRequest.java</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/signin.xhtml</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/new_vacationRequest.xhtml</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/model/channel/NotifyResource.java</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/model/realm/EmployeesRealm.java</file>
             <file>file:/home/abd/NetBeansProjects/WebApplication1/web/templates/default/main.xhtml</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/WEB-INF/glassfish-resources.xml</file>
             <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/view/bean/VacationManagedBean.java</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/add_employee.xhtml</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/model/pojo/Employee.java</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/model/Dao/ManagementEmploeeDao.java</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/add_department.xhtml</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/model/Dao/VacationRequestDao.java</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/model/pojo/ManagementEmployee.java</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/view/bean/EmployeeManagedBean.java</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/model/pojo/DivisionManager.java</file>
+            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/model/channel/NotifyResource.java</file>
             <file>file:/home/abd/NetBeansProjects/WebApplication1/web/templates/default/header.xhtml</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/view/bean/LoginManagedBean.java</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/WEB-INF/shiro.ini</file>
             <file>file:/home/abd/NetBeansProjects/WebApplication1/web/WEB-INF/web.xml</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/employee_home.xhtml</file>
         </group>
     </open-files>
 </project-private>
