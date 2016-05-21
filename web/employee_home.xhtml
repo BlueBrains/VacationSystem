@@ -75,7 +75,7 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">إجراء</f:facet>
-                        <h:panelGroup  rendered="#{(vacationManagedBean.companyManager and  (vacationManagedBean.getStatus(vacation[0]) eq 'AcceptedByDivisonManager' or vacationManagedBean.getStatus(vacation[0]) eq 'UnKnown' ) ) or (vacationManagedBean.divisionManager and vacationManagedBean.getStatus(vacation[0]) eq 'UnKnown')}">                                
+                        <h:panelGroup  rendered="#{(vacationManagedBean.companyManager and  (vacationManagedBean.getStatus(vacation[0]) eq 'AcceptedByDivisionManager' or vacationManagedBean.getStatus(vacation[0]) eq 'UnKnown' ) ) or (vacationManagedBean.divisionManager and vacationManagedBean.getStatus(vacation[0]) eq 'UnKnown')}">                                
                                 <h:commandLink value="قبول" action="#{vacationManagedBean.acceptVacationRequest(vacation[0])}" style="float:left" />
                                 <h:commandLink value="رفض" action="#{vacationManagedBean.rejectVacationRequest(vacation[0])}" style="float:right" />                                                
                         </h:panelGroup> 
