@@ -13,13 +13,16 @@ import com.model.pojo.DivisionManager;
 import com.model.pojo.Employee;
 import com.model.pojo.ManagementEmployee;
 import com.util.HibernateUtil;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import org.apache.jasper.tagplugins.jstl.ForEach;
+import org.apache.shiro.SecurityUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 /**
@@ -28,7 +31,7 @@ import org.hibernate.Session;
  */
 
 @ManagedBean(name="employeeManagedBean", eager=true)
-@ViewScoped
+@SessionScoped
 public class EmployeeManagedBean {
  
     /** Creates a new instance of EmployeeManagedBean */
@@ -104,7 +107,7 @@ public class EmployeeManagedBean {
         }
     }      
     
-    public String addEmployee()
+    public void addEmployee()
     {
         Division ed = DivisionDao.getDivisionsByName(divisionName, null).get(0);
         e.setDivision(ed);        
@@ -139,7 +142,12 @@ public class EmployeeManagedBean {
         EmployeeDao.addEmployee(fe,passwordplain);                
 //        DivisionDao.updateDivision(ed);
         employeeList=EmployeeDao.getEmployees(null);
-        return "employees.xhtml?faces-redirect=true";
+        
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("employees.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(EmployeeManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     
@@ -153,6 +161,10 @@ public class EmployeeManagedBean {
         employeeList=EmployeeDao.getEmployees(null);
     }
     
+    public String getCurrentEmployee()
+    {
+        return (String)SecurityUtils.getSubject().getSession().getAttribute("username");
+    }
     
     public String updateEmployee()
     {
@@ -231,7 +243,8 @@ public class EmployeeManagedBean {
             return "edit_employee.xhtml?faces-redirect=true&id="+emp.getId();
     }        
     
-    public boolean isCompanyHasManager(){
+    public boolean isCompanyHasManager()
+    {
         for(Employee emp: employeeList){
             if(emp instanceof CompanyManager)
                 return true;

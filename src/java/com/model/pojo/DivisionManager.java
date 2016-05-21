@@ -26,5 +26,12 @@ public class DivisionManager extends Employee implements Serializable
     public DivisionManager(String fname, String lname) {
         super(fname, lname);
     }
+
+    @Override
+    public void addVacationRequest(VacationRequest req) 
+    {
+        req.setStatus(VacationRequest.VacationStatus.AcceptedByDivisionManager);
+        super.addVacationRequest(req); 
+    }
     
 }

@@ -13,10 +13,13 @@ import com.model.pojo.Employee;
 import com.model.pojo.VacationRequest;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.apache.shiro.SecurityUtils;
 import org.primefaces.context.RequestContext;
+import org.primefaces.push.EventBus;
+import org.primefaces.push.EventBusFactory;
 
 /**
  *
@@ -30,7 +33,7 @@ public class VacationManagedBean {
     private String employeeType;
     private List<VacationRequest> vacationRequestsList;
     private List<VacationRequest> employeesRequestsList;
-
+    private EventBus eventBus;
 //    public void onDateEndSelect(SelectEvent event) {
 //        FacesContext facesContext = FacesContext.getCurrentInstance();
 //        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -102,14 +105,17 @@ public class VacationManagedBean {
             employeesRequestsList = VacationRequestDao.getVacationRequestsWithDivisions(
                     "where d.id='"+registeredUser.getDivision().getId()+
                     "' and e.id <> '"+registeredUser.getId()+"'",null);
+            eventBus=EventBusFactory.getDefault().eventBus();
         }else if(registeredUser instanceof CompanyManager){
             employeesRequestsList = VacationRequestDao.getVacationRequestsWithEmployee(" where v.status not in ( '"+
 //                    VacationRequest.VacationStatus.UnKnown+"', '"+
                     VacationRequest.VacationStatus.RejectedByDivisionManager+"' )",null);        
+            eventBus=EventBusFactory.getDefault().eventBus();
 //            List<VacationRequest> DivisionManagerReq = VacationRequestDao.getVacationRequestsWithDivisions(
 //                    "where d.divisionmanager = e ",null);
 //            employeesRequestsList.addAll(DivisionManagerReq);
         }
+        
     }    
     
     public String addVacationRequest(){
@@ -118,13 +124,39 @@ public class VacationManagedBean {
         VacationRequestDao.addVacationRequest(v);
         return "employee_home.xhtml?faces-redirect=true";
     }
-    
+    private String acceptmessage(Employee emp,VacationRequest v)
+    {
+        if(emp instanceof DivisionManager)
+        {
+            return "تم قبول طلب الإجازة رقم "+v.getId()+" من قبل مدير قسمك";
+        }
+        else if(emp instanceof CompanyManager)
+        {
+            return "تم قبول طلب الإجازة رقم "+v.getId()+" من قبل مدير الشركة";
+        }
+        return null;
+    }
+    private String rejectmessage(Employee emp,VacationRequest v)
+    {
+        if(emp instanceof DivisionManager)
+        {
+            return "تم رفض طلب الإجازة رقم "+v.getId()+" من قبل مدير قسمك";
+        }
+        else if(emp instanceof CompanyManager)
+        {
+            return "تم رفض طلب الإجازة رقم "+v.getId()+" من قبل مدير الشركة";
+        }
+        return null;
+    }
     public void acceptVacationRequest(VacationRequest v){
-        if(registeredUser instanceof DivisionManager)
+        if(registeredUser instanceof DivisionManager)        
+        {
             v.setStatus(VacationRequest.VacationStatus.AcceptedByDivisionManager);
+        }
         else 
             v.setStatus(VacationRequest.VacationStatus.Accepted);
         VacationRequestDao.updateVacationRequest(v);
+        eventBus.publish("/"+v.getEmployee().getUsername(), new FacesMessage(acceptmessage(registeredUser, v)));
     }
     
     public void rejectVacationRequest(VacationRequest v){
@@ -133,6 +165,7 @@ public class VacationManagedBean {
         else 
             v.setStatus(VacationRequest.VacationStatus.RejectedByCompanyManager);    
         VacationRequestDao.updateVacationRequest(v);
+        eventBus.publish("/"+v.getEmployee().getUsername(), new FacesMessage(rejectmessage(registeredUser, v)));
     }
     
     public boolean isCompanyManager(){
