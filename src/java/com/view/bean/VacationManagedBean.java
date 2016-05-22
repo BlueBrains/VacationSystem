@@ -10,12 +10,15 @@ import com.model.Dao.VacationRequestDao;
 import com.model.pojo.CompanyManager;
 import com.model.pojo.DivisionManager;
 import com.model.pojo.Employee;
+import com.model.pojo.ManagementEmployee;
 import com.model.pojo.VacationRequest;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import org.apache.shiro.SecurityUtils;
 import org.primefaces.context.RequestContext;
 import org.primefaces.push.EventBus;
@@ -29,6 +32,7 @@ import org.primefaces.push.EventBusFactory;
 @ViewScoped
 public class VacationManagedBean {
     private Employee registeredUser;
+    private Employee normalEmp;
     private VacationRequest v;
     private String employeeType;
     private List<VacationRequest> vacationRequestsList;
@@ -93,7 +97,11 @@ public class VacationManagedBean {
         registeredUser = EmployeeDao.getEmployee(username);
         employeeType = registeredUser.getClass().getSimpleName();
         v = new VacationRequest();
-        
+        Map<String, String> params = FacesContext.getCurrentInstance()
+                .getExternalContext().getRequestParameterMap();                
+        if(params.get("id")!=null && isManagementEmployee()){
+            normalEmp = EmployeeDao.getEmployee(Integer.parseInt(params.get("id")));
+        }        
     }
     
     @PostConstruct
@@ -120,10 +128,16 @@ public class VacationManagedBean {
     
     public String addVacationRequest(){
         v.setStatus(VacationRequest.VacationStatus.UnKnown);
-        registeredUser.addVacationRequest(v);        
+        if(isManagementEmployee()&&normalEmp!=null){
+            EmployeeDao.initializeVacationRequests(normalEmp);
+            normalEmp.addVacationRequest(v);
+        }
+        else
+            registeredUser.addVacationRequest(v);        
         VacationRequestDao.addVacationRequest(v);
         return "employee_home.xhtml?faces-redirect=true";
     }
+    
     private String acceptmessage(Employee emp,VacationRequest v)
     {
         if(emp instanceof DivisionManager)
@@ -136,6 +150,7 @@ public class VacationManagedBean {
         }
         return null;
     }
+    
     private String rejectmessage(Employee emp,VacationRequest v)
     {
         if(emp instanceof DivisionManager)
@@ -148,6 +163,7 @@ public class VacationManagedBean {
         }
         return null;
     }
+    
     public void acceptVacationRequest(VacationRequest v){
         if(registeredUser instanceof DivisionManager)        
         {
@@ -174,11 +190,20 @@ public class VacationManagedBean {
     
     public boolean isDivisionManager(){
         return  registeredUser instanceof DivisionManager;
-    }    
+    }
+    
+    public final boolean isManagementEmployee(){
+        return  registeredUser instanceof ManagementEmployee;
+    }
     
     public String addAction(){        
         return "new_vacationRequest.xhtml?faces-redirect=true";    
     }
+    
+    public String addForOthers(Employee e){
+        return "new_vacationRequest.xhtml?faces-redirect=true&id="+e.getId();    
+    }    
+    
     public String getStatus(VacationRequest ve) {
         return ve.getStatus().toString();
     }

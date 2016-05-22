@@ -231,17 +231,22 @@ public class EmployeeManagedBean {
             s.close();
         }        
     }
+    
     public String getEmployeeType(Employee emp){
         return emp.getClass().getSimpleName();
     }
+    
     public String addAction() {
             return "add_employee.xhtml?faces-redirect=true";
-    }        
+    }
+    
     public String editAction(Employee emp) {
-//            emp.setEditable(true);
-//            divisionName = emp.getDivision().getName();
             return "edit_employee.xhtml?faces-redirect=true&id="+emp.getId();
-    }        
+    }
+    
+    public String normalEmployeesList() {
+            return "normal_employees.xhtml?faces-redirect=true";
+    }
     
     public boolean isCompanyHasManager()
     {
