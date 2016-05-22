@@ -9,7 +9,7 @@
     <ui:composition template="/templates/default/main.xhtml">
         <ui:define name="content">            
             <h1 class="page-header "> <i class="fa fa-tachometer"></i>الموظفون</h1>
-            <h:form id="formView">
+            <h:form id="employees">
                 <p:dataTable id ="employeeDataTable" value="#{employeeManagedBean.employeeList}" var="employee">
                     <p:column headerText="الرقم">
                         <h:outputText value="#{employee.id}"></h:outputText>
@@ -31,8 +31,8 @@
                     </p:column>   
                     <p:column>                        
                         <f:facet name="header">إجراء</f:facet>
-                        <h:commandLink value="تعديل" action="#{employeeManagedBean.editAction(employee)}" style="float:left" />
-                        <h:commandLink value="حذف" action="#{employeeManagedBean.deleteEmployee(employee)}" style="float:right" />
+                        <p:commandLink value="تعديل" action="#{employeeManagedBean.editAction(employee)}" style="float:left" />
+                        <p:commandLink value="حذف" update=":employees" action="#{employeeManagedBean.deleteEmployee(employee)}" style="float:right" />
                     </p:column>	                    
                 </p:dataTable>                
                 <h:commandButton value="أضف موظف" action="#{employeeManagedBean.addAction}" style="padding: 3px; margin-top: 15px; "/>                

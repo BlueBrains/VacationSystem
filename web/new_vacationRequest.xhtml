@@ -29,11 +29,11 @@
                 <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
                     <h:outputText>هل أنت متأكد من المعلومات ؟</h:outputText>
                     <p:panelGrid id="display" columns="2" columnClasses="label,value">                        
-                        <h:outputText value="تاريخ البدء" />
+                        <h:outputText value="تاريخ البدء" style="color: black"/>
                         <h:outputText value="#{vacationManagedBean.v.begindate}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
-                        <h:outputText value="تاريخ الانتهاء" />
+                        <h:outputText value="تاريخ الانتهاء" style="color:black" />
                         <h:outputText value="#{vacationManagedBean.v.enddate}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>

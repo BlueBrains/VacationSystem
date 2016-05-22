@@ -9,7 +9,7 @@
     <ui:composition template="/templates/default/main.xhtml">
         <ui:define name="content">            
             <h1 class="page-header "> <i class="fa fa-tachometer"></i>الأقسام</h1>
-            <h:form id="formView">
+            <h:form id="divisions">
                 <p:dataTable id ="divisionDataTable" value="#{divisionManagedBean.divisionList}" var="division">
                     <p:column headerText="الرقم">
                         <h:outputText value="#{division.id}"></h:outputText>
@@ -22,8 +22,8 @@
                     </p:column>
                     <p:column>    				
                         <f:facet name="header">إجراء</f:facet>
-                        <h:commandLink value="تعديل" action="#{divisionManagedBean.editAction(division)}" style="float:left" />
-                        <h:commandLink value="حذف" action="#{divisionManagedBean.deleteDivision(division)}" style="float:right" />
+                        <p:commandLink value="تعديل" action="#{divisionManagedBean.editAction(division)}" style="float:left" />
+                        <p:commandLink update=":divisions" value="حذف" action="#{divisionManagedBean.deleteDivision(division)}" style="float:right" />
                     </p:column>                                        
                 </p:dataTable>                
                 <p:commandButton value="قسم جديد" action="#{divisionManagedBean.addAction}" style="padding: 3px; margin-top: 15px; " ></p:commandButton>

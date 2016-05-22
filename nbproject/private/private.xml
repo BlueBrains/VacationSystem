@@ -3,11 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/templates/default/main.xhtml</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/view/bean/VacationManagedBean.java</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/src/java/com/model/channel/NotifyResource.java</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/templates/default/header.xhtml</file>
-            <file>file:/home/abd/NetBeansProjects/WebApplication1/web/WEB-INF/web.xml</file>
+            <file>file:/home/molham/NetBeansProjects/vacation_system/web/edit_employee.xhtml</file>
+            <file>file:/home/molham/NetBeansProjects/vacation_system/web/new_vacationRequest.xhtml</file>
+            <file>file:/home/molham/NetBeansProjects/vacation_system/web/add_department.xhtml</file>
+            <file>file:/home/molham/NetBeansProjects/vacation_system/web/add_employee.xhtml</file>
+            <file>file:/home/molham/NetBeansProjects/vacation_system/src/java/com/view/bean/EmployeeManagedBean.java</file>
+            <file>file:/home/molham/NetBeansProjects/vacation_system/web/divisions.xhtml</file>
+            <file>file:/home/molham/NetBeansProjects/vacation_system/src/java/com/view/bean/LoginManagedBean.java</file>
+            <file>file:/home/molham/NetBeansProjects/vacation_system/web/edit_department.xhtml</file>
+            <file>file:/home/molham/NetBeansProjects/vacation_system/web/employees.xhtml</file>
+            <file>file:/home/molham/NetBeansProjects/vacation_system/web/employee_home.xhtml</file>
+            <file>file:/home/molham/NetBeansProjects/vacation_system/src/java/com/view/bean/VacationManagedBean.java</file>
+            <file>file:/home/molham/NetBeansProjects/vacation_system/web/normal_employees.xhtml</file>
         </group>
     </open-files>
 </project-private>
